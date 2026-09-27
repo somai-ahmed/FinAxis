@@ -68,3 +68,22 @@ static bool ligne_avoir_montant(const ligne_journal *ligne, Monnaie *montant_out
     }
     return false;
 }
+
+/* Ajoute un element a un tableau dynamique de ligne_contexte, en doublant
+ la capacite quand elle est atteinte -- meme logique de la fonction "REALLOC"*/
+static Etat ajouter_ligne_contexte(ligne_contexte **lignes, size_t *nombre, size_t *capacite, const ligne_contexte *nouvelle) {
+    if (*nombre == *capacite) {
+        size_t nouvelle_capacite = (*capacite == 0) ? 64 : (*capacite * 2);
+        ligne_contexte *nv = realloc(*lignes, nouvelle_capacite * sizeof(ligne_contexte));
+
+        if (nv == NULL) {
+            return ERR_SORTIE_DU_MEMOIRE;
+        }
+        *lignes = nv;
+        *capacite = nouvelle_capacite;
+    }
+
+    (*lignes)[*nombre] = *nouvelle;
+    (*nombre)++;
+    return ETAT_OK;
+}
