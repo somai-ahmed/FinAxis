@@ -29,3 +29,20 @@
 #include "Src/FinCore.Native/include/session.h"
 #include "Src/FinCore.Native/include/detection.h"
 #include "Src/FinCore.Native/include/dates.h"
+
+
+
+/* ------------------------------------------------------------------
+ * Structure interne : une ligne de journal avec juste
+ * ce qu'il faut de son ecriture parente pour comparer deux lignes entre
+ * elles sans avoir a re-parcourir la session a chaque fois.
+ * ------------------------------------------------------------------ */
+typedef struct {
+    IdEcriture id_ecriture;      /* variable unique */
+    id_ligne   id_ligne;
+    id_compte  compte_id;
+    Monnaie    montant;          /* le cote non nul de la ligne (Debit ou credit) */
+    int        est_debit;        /* 1 si "montant" vient du Debit, 0 si du credit */
+    DATE       date;             /* date de l'ecriture parente */
+    char       reference[32];    /* reference de l'ecriture parente, pour les messages */
+} ligne_contexte;
