@@ -87,3 +87,38 @@ static Etat ajouter_ligne_contexte(ligne_contexte **lignes, size_t *nombre, size
     (*nombre)++;
     return ETAT_OK;
 }
+
+/* Meme principe, mais pour le tableau de Resultat_Detection final : un
+ * doublon trouve = un Resultat_Detection ajoute a la fin du tableau. */
+static Etat ajouter_resultat_doublon(Resultat_Detection **resultats, size_t *nombre, size_t *capacite, const ligne_contexte *a, const ligne_contexte *b, int32_t ecart_jours, int fenetre_jours) {
+    Resultat_Detection *r;
+
+    if (*nombre == *capacite) {
+        size_t nouvelle_capacite = (*capacite == 0) ? 16 : (*capacite * 2);
+        Resultat_Detection *nv = realloc(*resultats, nouvelle_capacite * sizeof(Resultat_Detection));
+
+        if (nv == NULL) {
+            return ERR_SORTIE_DU_MEMOIRE;
+        }
+        *resultats = nv;
+        *capacite = nouvelle_capacite;
+    }
+
+    r = &(*resultats)[*nombre];
+    memset(r, 0, sizeof(*r));
+    r->methode = DETECT_DOUBLONS;
+    /* meme jour = plus suspect qu'un ecart de plusieurs jours dans la fenetre */
+    r->gravite = (ecart_jours == 0) ? GRAVITE_ELEVEE : GRAVITE_MOYENNE;
+    r->id_compte = a->compte_id;
+    r->id_ligne = b->id_ligne; /* "b" est la ligne la plus tardive : celle qu'on suspecte d'etre le doublon de "a" */
+    snprintf(r->description, sizeof(r->description),
+        "Doublon possible : compte %u, meme montant %s sur les ecritures %s et %s, %d jour(s) d'ecart",
+        (unsigned)a->compte_id, a->est_debit ? "au debit" : "au credit", a->reference, b->reference, ecart_jours);
+
+    /* score normalise entre 0 et 1 : plus les deux dates sont proches,
+     * plus le score (donc la suspicion) est eleve */
+    r->score = 1.0 - ((double)ecart_jours / (double)fenetre_jours);
+
+    (*nombre)++;
+    return ETAT_OK;
+}
