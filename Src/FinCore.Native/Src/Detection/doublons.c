@@ -122,3 +122,64 @@ static Etat ajouter_resultat_doublon(Resultat_Detection **resultats, size_t *nom
     (*nombre)++;
     return ETAT_OK;
 }
+
+/* ------------------------------------------------------------------
+                      API interne DE Detection
+ * ------------------------------------------------------------------ */
+Etat detecter_doublons(Session *session, idperiodefiscale id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats) {
+    /* declaration */
+    size_t nombre_ecritures;
+    size_t i, j;
+    ligne_contexte *lignes = NULL;
+    size_t nb_lignes = 0;
+    size_t capacite_lignes = 0;
+    size_t capacite_resultats = 0;
+    Etat etat;
+
+    /* verification */
+    if (session == NULL || cfg == NULL || resultats == NULL || nombre_resultats == NULL) {
+        return ERR_POINTEUR_NULLE;
+    }
+
+    /* initialisation */
+    *resultats = NULL;
+    *nombre_resultats = 0;
+
+    /* une fenetre a 0 (ou negative) ne veut rien dire : pas de config valide,
+     * pas de detection possible */
+    if (cfg->fenetre_jours_doublon <= 0) {
+        return ERR_CONFIGURATION_DETECTION_INVALIDE;
+    }
+
+    nombre_ecritures = Session_GetEcritureCount(session);
+
+    /* parcours & verification des lignes du journal */
+    for (i = 0; i < nombre_ecritures; i++) {
+        const Ecriture *ecriture = Session_avoir_EcritureAt(session, i);
+
+        if (ecriture == NULL || ecriture->periode_id != id_periode || !ecriture->est_validee) {
+            continue;
+        }
+
+        for (j = 0; j < ecriture->nombre_lignes; j++) {
+            const ligne_journal *ligne = &ecriture->lignes[j];
+            ligne_contexte ctx;
+
+            if (!ligne_avoir_montant(ligne, &ctx.montant, &ctx.est_debit)) {
+                continue; /* ligne a zero des deux cotes : rien a comparer */
+            }
+
+            ctx.id_ecriture = ecriture->id;
+            ctx.id_ligne = ligne->id;
+            ctx.compte_id = ligne->compte_id;
+            ctx.date = ecriture->date;
+            /* snprintf tronque proprement si la reference depasse 31 caracteres + le \0 final */
+            snprintf(ctx.reference, sizeof(ctx.reference), "%s", ecriture->reference);
+
+            etat = ajouter_ligne_contexte(&lignes, &nb_lignes, &capacite_lignes, &ctx);
+            if (etat != ETAT_OK) {
+                free(lignes);
+                return etat;
+            }
+        }
+    }
