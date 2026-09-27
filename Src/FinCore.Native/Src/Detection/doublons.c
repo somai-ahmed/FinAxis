@@ -40,9 +40,31 @@
 typedef struct {
     IdEcriture id_ecriture;      /* variable unique */
     id_ligne   id_ligne;
-    id_compte  compte_id;
-    Monnaie    montant;          /* le cote non nul de la ligne (Debit ou credit) */
-    int        est_debit;        /* 1 si "montant" vient du Debit, 0 si du credit */
-    DATE       date;             /* date de l'ecriture parente */
-    char       reference[32];    /* reference de l'ecriture parente, pour les messages */
+    id_compte compte_id;
+    Monnaie montant;          /* le cote non nul de la ligne (Debit ou credit) */
+    int est_debit;        /* 1 si "montant" vient du Debit, 0 si du credit */
+    DATE date;             /* date de l'ecriture parente */
+    char reference[32];    /* reference de l'ecriture parente, pour les messages */
 } ligne_contexte;
+
+/* ------------------------------------------------------------------
+                 Fonctions internes (static functions)
+ * ------------------------------------------------------------------ */
+
+/* Une ligne_journal valide n'a jamais Debit ET credit non nuls en meme temps
+ (voir ecritures_ligne_valide) : cette fonction renvoie lequel des deux
+ est renseigne. Renvoie false si la ligne est a zero des deux cotes
+ (rien a comparer). */
+static bool ligne_avoir_montant(const ligne_journal *ligne, Monnaie *montant_out, int *est_debit_out) {
+    if (ligne->Debit != 0) {
+        *montant_out = ligne->Debit;
+        *est_debit_out = 1;
+        return true;
+    }
+    if (ligne->credit != 0) {
+        *montant_out = ligne->credit;
+        *est_debit_out = 0;
+        return true;
+    }
+    return false;
+}
