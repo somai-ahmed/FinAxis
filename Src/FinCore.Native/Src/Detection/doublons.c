@@ -183,3 +183,52 @@ Etat detecter_doublons(Session *session, idperiodefiscale id_periode, const conf
             }
         }
     }
+    /* moins de 2 lignes : rien a comparer, ce n'est pas une erreur */
+    if (nb_lignes < 2) {
+        free(lignes);
+        return ETAT_OK;
+    }
+
+    /*parcours pour la comparison du chaque ligne journal avec tous les cases du tableau 
+            (avant ou apres) pour la detection des doublons*/
+    
+    for (i = 0; i < nb_lignes; i++) {
+        for (j = i + 1; j < nb_lignes; j++) {
+            const ligne_contexte *a = &lignes[i];
+            const ligne_contexte *b = &lignes[j];
+            int32_t jdn_a, jdn_b, ecart_jours;
+
+            if (a->id_ecriture == b->id_ecriture) {
+                continue; /* deux lignes de la MEME ecriture : pas un doublon entre saisies */
+            }
+            if (a->compte_id != b->compte_id || a->est_debit != b->est_debit || a->montant != b->montant) {
+                continue; /* compte, sens ou montant differents : pas un doublon */
+            }
+
+            /* date_en_jdn convertit une DATE en numero de jour julien : une
+             * simple soustraction d'entiers donne alors l'ecart en jours,
+             * peu importe si les deux dates sont dans le meme mois ou pas */
+            jdn_a = date_en_jdn(a->date);
+            jdn_b = date_en_jdn(b->date);
+            ecart_jours = (jdn_a > jdn_b) ? (jdn_a - jdn_b) : (jdn_b - jdn_a);
+
+            if (ecart_jours > cfg->fenetre_jours_doublon) {
+                continue; /* trop loin dans le temps pour etre suspect */
+            }
+
+            /* "a" est toujours la ligne la plus ancienne (ou egale) grace a
+             * i < j et au tableau rempli dans l'ordre des ecritures */
+            etat = ajouter_resultat_doublon(resultats, nombre_resultats, &capacite_resultats, a, b, ecart_jours, cfg->fenetre_jours_doublon);
+            if (etat != ETAT_OK) {
+                free(lignes);
+                free(*resultats);
+                *resultats = NULL;
+                *nombre_resultats = 0;
+                return etat;
+            }
+        }
+    }
+
+    free(lignes);
+    return ETAT_OK;
+}
