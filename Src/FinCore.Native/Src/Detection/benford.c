@@ -27,3 +27,9 @@
 #include "Src/FinCore.Native/include/detection.h"
 #include "Src/FinCore.Native/include/math_utils.h"
 
+
+/* En dessous de ce nombre de montants, le test du Khi-deux n'est plus
+ * fiable statistiquement (regle empirique generalement admise pour
+ * Benford : un echantillon trop petit donne des frequences observees
+ * trop instables pour juger quoi que ce soit). */
+#define BENFORD_TAILLE_ECHANTILLON_MIN 30
