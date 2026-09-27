@@ -19,3 +19,13 @@
  *   - leurs dates sont a moins de cfg->fenetre_jours_doublon jours
  *     d'ecart 
  */
+
+#include <stdio.h>   /* snprintf : formatage de texte dans un buffer de taille fixe */
+#include <stdlib.h>  /* malloc/realloc/free : allocation dynamique des tableaux */
+#include <string.h>  /* memset : remise a zero d'une structure */
+
+#include "Src/FinCore.Native/include/types.h"
+#include "Src/FinCore.Native/include/errors.h"
+#include "Src/FinCore.Native/include/session.h"
+#include "Src/FinCore.Native/include/detection.h"
+#include "Src/FinCore.Native/include/dates.h"
