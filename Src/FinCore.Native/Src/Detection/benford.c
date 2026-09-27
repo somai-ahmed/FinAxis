@@ -177,3 +177,61 @@ Etat calculer_rapport_benford(Session *session, idperiodefiscale id_periode, Rap
 
     return ETAT_OK;
 }
+
+
+/* Adaptateur appele par execute_detection() (voir detection.c) : transforme
+a le rapport statistique en un Resultat_Detection unique si la periode
+ * semble anormale. Un echantillon trop petit n'est pas traite comme une
+ * erreur bloquante pour l'orchestrateur : on remonte simplement 0 resultat,
+ * il n'y a juste pas assez de donnees pour se prononcer. */
+Etat detecter_benford_anomalies(Session *session, idperiodefiscale id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats) {
+    Rapport_Benford rapport;
+    Etat etat;
+
+    /* verification */
+    if (session == NULL || cfg == NULL || resultats == NULL || nombre_resultats == NULL) {
+        return ERR_POINTEUR_NULLE;
+    }
+
+    /* initialisation des variables necessaires */
+    *resultats = NULL;
+    *nombre_resultats = 0;
+
+    etat = calculer_rapport_benford(session, id_periode, &rapport);
+
+    if (etat == ERR_ECHANTILLON_BENFORD_INSUFFISANT) {
+        return ETAT_OK; /* pas assez de donnees : ce n'est pas une erreur, juste "rien a signaler" */
+    }
+    if (etat != ETAT_OK) {
+        return etat;
+    }
+
+    if (!rapport.estnormal) {
+        /* un seul malloc ici : liberer_resultats_detection() de detection.c
+         * fait un simple free() sur le tableau final, donc chaque methode
+         * doit allouer avec malloc/realloc, jamais un pointeur vers une
+         * variable locale */
+        Resultat_Detection *sortie = malloc(sizeof(Resultat_Detection));
+
+        if (sortie == NULL) {
+            return ERR_SORTIE_DU_MEMOIRE;
+        }
+
+        memset(sortie, 0, sizeof(*sortie));
+        sortie->methode = DETECT_BENFORD;
+        /* un ecart tres important (plus du double du seuil) est classe
+         * plus grave qu'un ecart juste au-dessus du seuil */
+        sortie->gravite = (rapport.chiffre_carree > BENFORD_SEUIL_CHI_CARRE * 2.0) ? GRAVITE_ELEVEE : GRAVITE_MOYENNE;
+        sortie->id_ligne = 0;   /* resultat global sur la periode, pas une ligne precise */
+        sortie->id_compte = 0;  /* idem : Benford analyse la periode entiere, pas un compte */
+        snprintf(sortie->description, sizeof(sortie->description),
+            "Distribution des premiers chiffres eloignee de la loi de Benford (khi-carre=%.2f, seuil=%.2f, echantillon=%d)",
+            rapport.chiffre_carree, BENFORD_SEUIL_CHI_CARRE, rapport.taille_echantillon);
+        sortie->score = rapport.chiffre_carree;
+
+        *resultats = sortie;
+        *nombre_resultats = 1;
+    }
+
+    return ETAT_OK;
+}
