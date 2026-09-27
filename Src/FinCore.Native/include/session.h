@@ -95,7 +95,7 @@ const Compte *Session_chercher_Compte_Par_Code(const Session *session, const cha
 /* Valide l'ecriture (equilibree, comptes connus) avant de stocker
  * une copie profonde.
  * Rien n'est stocke si la validation echoue. */
-FNC_API Etat Session_AddEcriture(Session *session, const Ecriture *ecriture);
+Etat Session_AddEcriture(Session *session, const Ecriture *ecriture);
 
 size_t Session_GetEcritureCount(const Session *session);
 const Ecriture *Session_avoir_EcritureAt(const Session *session, size_t index);
