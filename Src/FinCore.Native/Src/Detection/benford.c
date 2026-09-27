@@ -33,3 +33,35 @@
  * Benford : un echantillon trop petit donne des frequences observees
  * trop instables pour juger quoi que ce soit). */
 #define BENFORD_TAILLE_ECHANTILLON_MIN 30
+
+/* ------------------------------------------------------------------
+              Fonction interne (static functions)
+ -------------------------------------------------------------------*/
+
+/* Une ligne_journal valide n'a jamais Debit ET credit non nuls en meme
+    temps (voir ecritures_ligne_valide dans ecritures.c) : un seul cote
+    porte le montant, c'est celui-la qui nous interesse ici. */
+
+static Monnaie montant_significatif_ligne(const ligne_journal *ligne) {
+    return (ligne->Debit != 0) ? ligne->Debit : ligne->credit;
+}
+
+/* Ajoute une valeur au tableau dynamique "valeurs", en l'agrandissant
+ * (doublement de capacite) si besoin. Meme logique de realloc function (malloc.h library)*/
+
+static Etat ajouter_montant(double **valeurs, size_t *nombre, size_t *capacite, double valeur) {
+    if (*nombre == *capacite) {
+        size_t nouvelle_capacite = (*capacite == 0) ? 64 : (*capacite * 2);
+        double *nv = realloc(*valeurs, nouvelle_capacite * sizeof(double));
+
+        if (nv == NULL) {
+            return ERR_SORTIE_DU_MEMOIRE;
+        }
+        *valeurs = nv;
+        *capacite = nouvelle_capacite;
+    }
+
+    (*valeurs)[*nombre] = valeur;
+    (*nombre)++;
+    return ETAT_OK;
+}
