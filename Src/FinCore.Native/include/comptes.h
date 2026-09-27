@@ -15,8 +15,8 @@ bool comptes_valider_code(const char *code);
 bool comptes_valider(const Compte *compte);
 
 /* Opérations sur le solde */
-Etat comptes_debiter(Compte *compte, FNC_Monnaie montant);
-Etat comptes_crediter(Compte *compte, FNC_Monnaie montant);
+Etat comptes_debiter(Compte *compte, Monnaie montant);
+Etat comptes_crediter(Compte *compte, Monnaie montant);
 Monnaie comptes_avoir_solde(const Compte *compte);
 
 /* Hiérarchie */
