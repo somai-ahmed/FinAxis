@@ -39,3 +39,18 @@ struct Session {
 
     Etat derniere_erreur;          /* dernier echec sur cette session */
 };
+
+/* ------------------------------------------------------------------
+                   Fonctions internes (static)                      
+ ------------------------------------------------------------------ */
+
+/* Retient l'erreur dans la session puis la renvoie telle quelle.
+ * un exemple vivant du code reel et exuctable pour la
+ clarite d'usage      "return session_echec(session, ERR_...)" en une ligne. */
+
+static Etat session_echec(Session *session, Etat etat) {
+    if (session != NULL && etat != ETAT_OK) {
+        session->derniere_erreur = etat;
+    }
+    return etat;
+}
