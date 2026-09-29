@@ -31,10 +31,10 @@ struct Session {
     size_t  capacite_comptes;
 
     Ecriture *ecritures;           /* journal (tableau dynamique) */
-    size_t    nb_ecritures;
-    size_t    capacite_ecritures;
+    size_t nb_ecritures;
+    size_t capacite_ecritures;
 
-    id_compte  prochain_id_compte;    /* identifiants uniques */
+    id_compte prochain_id_compte;    /* identifiants uniques */
     IdEcriture prochain_id_ecriture;
 
     Etat derniere_erreur;          /* dernier echec sur cette session */
@@ -53,4 +53,14 @@ static Etat session_echec(Session *session, Etat etat) {
         session->derniere_erreur = etat;
     }
     return etat;
+}
+
+/* Copie un texte dans un buffer de taille fixe */
+static void copier_texte(char *destination, size_t taille, const char *source) {
+    if (source == NULL) {
+        destination[0] = '\0';
+        return;
+    }
+    strncpy(destination, source, taille - 1);
+    destination[taille - 1] = '\0';
 }
