@@ -64,3 +64,9 @@ static void copier_texte(char *destination, size_t taille, const char *source) {
     strncpy(destination, source, taille - 1);
     destination[taille - 1] = '\0';
 }
+
+/* Remplit une config avec les valeurs par defaut (exp.nom vide, devise "TND") */
+static void config_par_defaut(SessionConfig *config) {
+    memset(config, 0, sizeof(SessionConfig));   /* initalisation a zero : chaines vides & dates a 0 */
+    copier_texte(config->devise, FNC_SESSION_DEVISE_LEN, "TND"); /* TND par defaut */
+}
