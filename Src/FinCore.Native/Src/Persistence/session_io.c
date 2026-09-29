@@ -14,3 +14,6 @@
 #include "Src/FinCore.Native/include/session.h"
 #include "Src/FinCore.Native/include/comptes.h"
 #include "Src/FinCore.Native/include/ecritures.h"
+
+/* Capacite de depart des tableaux -- definition*/
+#define SESSION_CAPACITE_INITIALE 16
