@@ -134,3 +134,39 @@ static Compte *trouver_compte_modifiable(Session *session, id_compte id) {
     }
     return NULL;
 }
+
+/* ------------------------------------------------------------------
+                   Fonctions du cycle du vie                   
+ ------------------------------------------------------------------ */
+
+Etat creer_session(const SessionConfig *config, Session **out_session) {
+    Session *session;
+
+    if (out_session == NULL) {
+        return ERR_POINTEUR_NULLE;
+    }
+    *out_session = NULL;
+
+
+    session = calloc(1, sizeof(Session));
+    if (session == NULL) {
+        return ERR_SORTIE_DU_MEMOIRE;
+    }
+
+    if (config == NULL) {
+        config_par_defaut(&session->config);
+    } else {
+        session->config = *config;
+
+        session->config.nom_entreprise[FNC_SESSION_NOM_LEN - 1] = '\0';
+        session->config.devise[FNC_SESSION_DEVISE_LEN - 1] = '\0';
+    }
+
+      /* initialisation a 1 , car 0 est INVALID_ID */
+    session->prochain_id_compte = 1;   
+    session->prochain_id_ecriture = 1;
+    session->derniere_erreur = ETAT_OK;
+
+    *out_session = session; /* SUCCESS */
+    return ETAT_OK;
+}
