@@ -210,3 +210,17 @@ const SessionConfig *Session_avoir_Config(const Session *session) {
     }
     return &session->config;
 }
+
+Etat Session_SetConfig(Session *session, const SessionConfig *config) {
+    if (session == NULL) {
+        return ERR_SESSION_INVALIDE;
+    }
+    if (config == NULL) {
+        return session_echec(session, ERR_POINTEUR_NULLE);
+    }
+
+    session->config = *config;
+    session->config.nom_entreprise[FNC_SESSION_NOM_LEN - 1] = '\0';
+    session->config.devise[FNC_SESSION_DEVISE_LEN - 1] = '\0';
+    return ETAT_OK;
+}
