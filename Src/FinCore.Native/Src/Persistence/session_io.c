@@ -170,3 +170,12 @@ Etat creer_session(const SessionConfig *config, Session **out_session) {
     *out_session = session; /* SUCCESS */
     return ETAT_OK;
 }
+
+void detruire_session(Session *session) {
+    if (session == NULL) {
+        return;
+    }
+    liberer_ecritures(session);
+    free(session->comptes);
+    free(session);
+}
