@@ -199,3 +199,14 @@ Etat reinitialiser_session(Session *session) {
 
     return ETAT_OK;
 }
+
+/*------------------------------------------
+                  CONFIG
+--------------------------------------------*/
+
+const SessionConfig *Session_avoir_Config(const Session *session) {
+    if (session == NULL) {
+        return NULL;
+    }
+    return &session->config;
+}
