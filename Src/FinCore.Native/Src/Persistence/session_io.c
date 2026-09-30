@@ -70,3 +70,16 @@ static void config_par_defaut(SessionConfig *config) {
     memset(config, 0, sizeof(SessionConfig));   /* initalisation a zero : chaines vides & dates a 0 */
     copier_texte(config->devise, FNC_SESSION_DEVISE_LEN, "TND"); /* TND par defaut */
 }
+
+/* Libere les lignes de chaque ecriture */
+static void liberer_ecritures(Session *session) {
+    size_t i;
+
+    for (i = 0; i < session->nb_ecritures; i++) {
+        ecritures_detruire(&session->ecritures[i]);
+    }
+    free(session->ecritures);
+    session->ecritures = NULL;
+    session->nb_ecritures = 0;
+    session->capacite_ecritures = 0;
+}
