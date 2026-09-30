@@ -83,3 +83,22 @@ static void liberer_ecritures(Session *session) {
     session->nb_ecritures = 0;
     session->capacite_ecritures = 0;
 }
+
+/* elargit le tableau de comptes si il est plein (realloc) */
+static Etat reserver_comptes(Session *session) {
+    Compte *nouveau;
+    size_t nouvelle_capacite;
+
+    if (session->nb_comptes < session->capacite_comptes) {
+        return ETAT_OK;   /* il reste de la place */
+    }
+
+    nouvelle_capacite = (session->capacite_comptes == 0) ? SESSION_CAPACITE_INITIALE : session->capacite_comptes * 2;
+    nouveau = realloc(session->comptes, nouvelle_capacite * sizeof(Compte));
+    if (nouveau == NULL) {
+        return ERR_SORTIE_DU_MEMOIRE;   /* l'ancien tableau reste valide */
+    }
+    session->comptes = nouveau;
+    session->capacite_comptes = nouvelle_capacite;
+    return ETAT_OK;
+}
