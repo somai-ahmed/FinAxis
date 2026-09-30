@@ -122,3 +122,15 @@ static Etat reserver_ecritures(Session *session) {
     session->capacite_ecritures = nouvelle_capacite;
     return ETAT_OK;
 }
+
+/* la recherche par id (autre version en cas du changement) */
+static Compte *trouver_compte_modifiable(Session *session, id_compte id) {
+    size_t i;
+
+    for (i = 0; i < session->nb_comptes; i++) {
+        if (session->comptes[i].id == id) {
+            return &session->comptes[i];
+        }
+    }
+    return NULL;
+}
