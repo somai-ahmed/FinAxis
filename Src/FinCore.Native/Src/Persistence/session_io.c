@@ -102,3 +102,23 @@ static Etat reserver_comptes(Session *session) {
     session->capacite_comptes = nouvelle_capacite;
     return ETAT_OK;
 }
+
+/* elargire le tableau des ecritures si il est plein (realloc) */
+      /* meme logique que reserver_comptes */
+static Etat reserver_ecritures(Session *session) {
+    Ecriture *nouveau;
+    size_t nouvelle_capacite;
+
+    if (session->nb_ecritures < session->capacite_ecritures) {
+        return ETAT_OK;
+    }
+
+    nouvelle_capacite = (session->capacite_ecritures == 0) ? SESSION_CAPACITE_INITIALE : session->capacite_ecritures * 2;
+    nouveau = realloc(session->ecritures, nouvelle_capacite * sizeof(Ecriture));
+    if (nouveau == NULL) {
+        return ERR_SORTIE_DU_MEMOIRE;
+    }
+    session->ecritures = nouveau;
+    session->capacite_ecritures = nouvelle_capacite;
+    return ETAT_OK;
+}
