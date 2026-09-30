@@ -179,3 +179,23 @@ void detruire_session(Session *session) {
     free(session->comptes);
     free(session);
 }
+
+Etat reinitialiser_session(Session *session) {
+    if (session == NULL) {
+        return ERR_SESSION_INVALIDE;
+    }
+
+      /* liberation & re-initilialisation */
+
+    liberer_ecritures(session);
+    free(session->comptes);
+    session->comptes = NULL;
+    session->nb_comptes = 0;
+    session->capacite_comptes = 0;
+
+    session->prochain_id_compte = 1;
+    session->prochain_id_ecriture = 1;
+    session->derniere_erreur = ETAT_OK;
+
+    return ETAT_OK;
+}
