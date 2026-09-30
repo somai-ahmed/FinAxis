@@ -224,3 +224,10 @@ Etat Session_SetConfig(Session *session, const SessionConfig *config) {
     session->config.devise[FNC_SESSION_DEVISE_LEN - 1] = '\0';
     return ETAT_OK;
 }
+
+Etat Session_avoir_le_dernier_Erreur(const Session *session) {
+    if (session == NULL) {
+        return ERR_SESSION_INVALIDE;
+    }
+    return session->derniere_erreur;
+}
