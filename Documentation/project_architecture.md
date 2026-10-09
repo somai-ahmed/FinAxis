@@ -1,4 +1,4 @@
-# FinCore Accounting & Fraud Detection Engine — Architecture
+# FinAxis Accounting & Fraud Detection Engine — Architecture
 
 _Supersedes GUI/Excel decisions in Project Explication Book v1.0. C core API and business rules (sections 3, 4, 8, 9, 10) are unchanged._
 
@@ -14,7 +14,7 @@ _Supersedes GUI/Excel decisions in Project Explication Book v1.0. C core API and
 
 ## 2. Naming Conventions (resolved)
 
-- Accounting-domain files/functions: **French** — `comptes`, `ecritures`, `periodes`, `monnaie`, `identifiants`, `balance`, `bilan`, `grand_livre`, `compte_resultat`, `doublons`, `montants_ronds`, `valeurs_aberrantes`.
+- Accounting-domain files/functions: **French** — `comptes`, `ecritures`, `periodes`, `monnaie`, `identifiants`, `balance`, `bilan`, `grand_livre`, `compte_resultat`, `doublons`, `montants_ronds`, `valeurs_aberrantes`, etc.
 - Infra/generic files: **English** — `core`, `utils`, `session`, `errors`, `validation`, `dates`, `strings`, `math_utils`, `reports`, `detection`, `persistence`.
 - Docs are updated to match code, not the reverse (code never renamed to fit an old doc).
 - Public headers live flat in `include/`; internal-only headers live next to their `.c` in `src/`.
@@ -22,11 +22,11 @@ _Supersedes GUI/Excel decisions in Project Explication Book v1.0. C core API and
 ## 3. Directory Tree
 
 ```
-FinCore/
+FinAxis/
 ├── Src/
-│   ├── FinCore.Native/
+│   ├── FinAxis.Native/
 │   │   ├── include/
-│   │   │   ├── fincore_ae.h        # umbrella header, includes all below
+│   │   │   ├── finaxis_ae.h        # umbrella header, includes all below
 │   │   │   ├── types.h
 │   │   │   ├── errors.h
 │   │   │   ├── dates.h
@@ -70,10 +70,10 @@ FinCore/
 │   │   │   └── persistence/
 │   │   │       └── session_io.c    # [Stretch for demo] JSON save/load, needs cJSON
 │   │   └── build/
-│   │       └── FinCore_ae.dll      # (.so if building for Linux dev/testing)
-│   └── FinCore.Desktop/            # Python + PySide6
+│   │       └── FinAxis_ae.dll      # (.so if building for Linux dev/testing)
+│   └── FinAxis.Desktop/            # Python + PySide6
 │       ├── bindings/
-│       │   ├── fincore_ffi.py      # ctypes.CDLL load + prototypes
+│       │   ├── finaxis_ffi.py      # ctypes.CDLL load + prototypes
 │       │   ├── structs.py          # ctypes.Structure mirrors of C structs
 │       │   └── marshaling.py       # buffer/array helpers
 │       ├── models/
@@ -107,9 +107,9 @@ FinCore/
 │       │   │   └── period_manager_window.py # Stretch
 │       │   ├── widgets/
 │       │   │   ├── amount_line_edit.py  # QLineEdit + QDoubleValidator
-│       │   │   ├── account_combo_box.py # QComboBox + QCompleter
-│       │   │   ├── journal_table_widget.py # QTableWidget
-│       │   │   └── report_viewer_widget.py
+│       │   │   │   ├── account_combo_box.py # QComboBox + QCompleter
+│       │   │   │   ├── journal_table_widget.py # QTableWidget
+│       │   │   │   └── report_viewer_widget.py
 │       │   └── dialogs/
 │       │       ├── export_dialog.py
 │       │       ├── detection_config_dialog.py
@@ -148,7 +148,7 @@ FinCore/
 │   ├── build-native.yml
 │   ├── build-desktop.yml
 │   └── release.yml
-└── demo_data.FinCore
+└── demo_data.FinAxis
 ```
 
 ## 4. Module Responsibilities — Native
@@ -160,7 +160,7 @@ FinCore/
 | `accounting/` | Chart of accounts, journal entries, periods |
 | `reports/` | GL, trial balance, balance sheet, income statement |
 | `detection/` | Benford, duplicates, round numbers, outliers |
-| `persistence/` | `.FinCore` JSON read/write |
+| `persistence/` | `.FinAxis` JSON read/write |
 
 ## 5. Module Responsibilities — Desktop
 
@@ -177,6 +177,7 @@ FinCore/
 1. GUI: VB.NET/WinForms/P-Invoke → Python/PySide6/ctypes.
 2. Excel: ClosedXML → openpyxl (open decision, flagged above).
 3. Persistence needs a C JSON library — cJSON suggested, not yet confirmed.
-4. `types.h`/`errors.h` renamed from `FinCore_types.h`/`FinCore_errors.h`.
+4. `types.h`/`errors.h` renamed from `FinAxis_types.h`/`FinAxis_errors.h`.
 5. French names kept for domain files (`comptes.c`, `ecritures.c`, etc.) — doc updated to match, not the reverse.
 6. `monnaie.h`, `identifiants.h`, `monnaie_convert.c` placed in `utils/`; `validation.c` stays in `utils/` (not `accounting/`); `errors.c` placed in `core/`.
+

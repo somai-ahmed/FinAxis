@@ -1,5 +1,5 @@
-#ifndef FINANCE_CORE_H
-#define FINANCE_CORE_H
+#ifndef FINAXIS_CORE_H
+#define FINAXIS_CORE_H
 
 #include "types.h"
 #include "errors.h"
