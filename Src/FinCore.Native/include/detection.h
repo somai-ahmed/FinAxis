@@ -6,7 +6,6 @@
 #include "periodes.h"
 
 
-typedef struct Session Session;
 
 /* ============================================================
 * Moteur Comptable FinCore - Moteur de détection
@@ -26,6 +25,9 @@ typedef struct Session Session;
 * Voir documentation/detection-engine.md
 * ============================================================ */
 
+
+/* Seuil du chi-carre de Benford : 8 degres de liberte, confiance 95 % */
+#define BENFORD_SEUIL_CHI_CARRE 15.507
 
 typedef enum Meth_Detection {
     DETECT_BENFORD = 0,
@@ -104,7 +106,7 @@ void detection_config_par_defaut(config_detection* cfg);
 
 Etat execute_detection(
     Session* session,
-    PeriodId id_periode,
+    idperiodefiscale id_periode,
     const config_detection* cfg,
     Resultat_Detection** resultats,
     size_t* nombre_resultats
@@ -117,7 +119,7 @@ Etat execute_detection(
     l'appelant doit fournir un pointeur vers le rapport */
 Etat Executer_Analyse_Benford(
     Session* session,
-    PeriodId id_periode,
+    idperiodefiscale id_periode,
     Rapport_Benford* rapport
 );
 
