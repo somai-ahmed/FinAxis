@@ -7,13 +7,11 @@ static bool statut_est_valide(status_periode_fiscale statut){
     return statut == PERIODE_FISCALE_OUVERTE  || statut == PERIODE_FISCALE_CLOTURE  || statut == PERIODE_FISCALE_VEROUILLEE;
 }
 
-bool periodes_plage_valide(DATE date_debut, DATE date_fin)
-{
+bool periodes_plage_valide(DATE date_debut, DATE date_fin){
     return date_valide(date_debut) && date_valide(date_fin) && comparer_dates(date_debut, date_fin) <= 0;
 }
 
-bool periodes_est_valide(const prop_periode_fiscale *periode)
-{
+bool periodes_est_valide(const prop_periode_fiscale *periode){
     if (periode == NULL) return false;
     if (periode->id == INVALID_ID) return false;
     if (periode->nom[0] == '\0') return false;
@@ -23,8 +21,7 @@ bool periodes_est_valide(const prop_periode_fiscale *periode)
     return periodes_plage_valide(periode->date_debut, periode->date_fin);
 }
 
-Etat periodes_creer(prop_periode_fiscale *periode, idperiodefiscale id,  const char *nom, DATE date_debut, DATE date_fin)
-{
+Etat periodes_creer(prop_periode_fiscale *periode, idperiodefiscale id,  const char *nom, DATE date_debut, DATE date_fin){
     size_t longueur;
 
     if (periode == NULL || nom == NULL)
@@ -48,9 +45,7 @@ Etat periodes_creer(prop_periode_fiscale *periode, idperiodefiscale id,  const c
     return ETAT_OK;
 }
 
-Etat periodes_generer_mensuelles(int32_t annee, idperiodefiscale premier_id,
-                                 prop_periode_fiscale *sortie, size_t capacite)
-{
+Etat periodes_generer_mensuelles(int32_t annee, idperiodefiscale premier_id,prop_periode_fiscale *sortie, size_t capacite){
     prop_periode_fiscale tampon[PERIODES_PAR_ANNEE];
     int32_t mois;
     Etat etat;
@@ -276,3 +271,4 @@ Etat periodes_verifier_ecriture(const prop_periode_fiscale *periodes, size_t nom
 
     return ETAT_OK;
 }
+
