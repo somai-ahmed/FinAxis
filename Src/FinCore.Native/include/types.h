@@ -6,14 +6,11 @@
 #include <stdbool.h>
 #include <time.h>
 
-typedef struct DATE{
-    int jour;
-    int mois;
-    int annee;
-}DATE;
+#include "dates.h"  
+
 
 /* ============================================================
- * Moteur comptable FinCore — definition des types fondamentaux
+ * Moteur comptable FinAxis — definition des types fondamentaux
  * ============================================================ */
 
 /* Representation monétaire en virgule fixe : unités entières mineures (ex. millimes)
@@ -68,6 +65,7 @@ typedef struct Compte {
     ClasseCompte classe;
     TypeCompte   type;
     SoldeNormal  solde_normal;
+    Monnaie      solde;              /* solde courant, mis a jour par debiter/crediter */
     id_compte    parent_id;          /* 0 si racine */
     int          est_active;
 }Compte;
