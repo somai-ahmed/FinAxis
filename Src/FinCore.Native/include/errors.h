@@ -165,6 +165,7 @@ typedef enum Etat {
 
 }Etat;
 
-const char* GetErrorMessage(Status status);
+/* Retourne un texte lisible pour un code Etat (jamais NULL) */
+const char* GetErrorMessage(Etat etat);
 
 #endif
