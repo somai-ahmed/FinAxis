@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#include <monnaie.h>
+#include "monnaie.h"
 
 /* Fonctions de validation generiques reutilisees par les couches
  * metier (comptes, ecritures, import Excel, etc.).
