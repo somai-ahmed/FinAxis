@@ -4,9 +4,9 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include <Src/FinCore.Native/include/types.h>
-#include <Src/FinCore.Native/include/errors.h>
-#include <comptes.h>
+#include "types.h"
+#include "errors.h"
+#include "comptes.h"
 
 /* Création et libération */
 Etat ecritures_creer(Ecriture *ecriture, idperiodefiscale periode_id, DATE date, const char *reference, const char *description);
