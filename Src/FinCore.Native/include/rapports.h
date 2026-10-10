@@ -1,131 +1,96 @@
 /*
- * rapports.h -- rapports financiers construits a partir d'une Session
+ * rapports.h -- rapports financiers : balance, grand livre, bilan, compte de resultat
  *
- * Chaque fonction Reports_Build* remplit une structure fournie par l'appelant ;
- * les lignes sont allouees dynamiquement par le moteur. Elles doivent etre
- * liberees avec la fonction Reports_Free* correspondante (qui remet egalement
- * la structure a zero).
+ * Tous les rapports travaillent sur des tableaux fournis par l'appelant
+ * (tableau + capacite + nombre ecrit), sans allocation cachee : c'est simple
+ * a appeler depuis Python avec ctypes.
  *
- * Arguments de periode : `debut` et `fin` sont tous deux inclusifs. NULL signifie
- * qu'il n'y a pas de limite de ce cote, ainsi que (NULL, NULL) couvre
- * l'ensemble du journal.
+ * Les montants sont de type Monnaie (int64, 3 decimales, voir types.h).
+ * Les structures de ligne (LigneBalance, Entree_GrandLivre, ligne_bilan)
+ * sont definies dans types.h.
  *
- * Les montants sont de type FNC_Monnaie (int64, echelle fixe a 3 decimales).
- * Les lignes sont des copies : elles restent valides meme si la session est
- * modifiee par la suite.
- *
- * Compatible avec ctypes : structures simples, entiers a largeur fixe,
- * sans champs de bits ni bool.
+ * Convention de retour : Etat (ETAT_OK == 0, ERR_* negatif en cas d'echec).
  */
-
-
 #ifndef RAPPORTS_H
 #define RAPPORTS_H
 
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #include "types.h"
 #include "errors.h"
 #include "dates.h"
 #include "session.h"
 
-/* ## FNC cad FINCANCE_CORE , pour des noms plus specifiques des vairables ## */
-
-/* Le texte copie dans les lignes des rapports est tronque pour tenir
- * dans les champs prevus (toujours termine par NULL). */
-#define FNC_RAPPORT_CODE_LEN 16
-#define FNC_RAPPORT_NOM_LEN 128
-#define FNC_RAPPORT_LIBELLE_LEN 256
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* ------------------------------------------------------------------ */
 /* Balance                                                            */
 /* ------------------------------------------------------------------ */
 
-typedef struct {
-    int32_t compte_id;
-    char code[FNC_RAPPORT_CODE_LEN];
-    char nom[FNC_RAPPORT_NOM_LEN];
-    FNC_ClasseCompte classe;
-    monnaie total_debit;
-    monnaie total_credit;
-    monnaie solde_debiteur;  /* max(debit - credit, 0) */
-    monnaie solde_crediteur; /* max(credit - debit, 0) */
-} LigneBalance;
+/* Une ligne par compte (dans l'ordre de comptes[]), sur la periode [debut, fin].
+ * Seules les ecritures comptabilisees sont retenues.
+ * capacite doit etre >= nb_comptes. */
+Etat balance_generer(const Compte *comptes, size_t nb_comptes,
+                     const Ecriture *ecritures, size_t nb_ecritures,
+                     DATE debut, DATE fin,
+                     LigneBalance *sortie, size_t capacite, size_t *nb_sortie);
 
-typedef struct {
-    LigneBalance *lignes; /* triees par code ; comptes sans mouvement omis */
-    size_t nb_lignes;
-    monnaie total_debit;
-    monnaie total_credit;
-    monnaie total_solde_debiteur;
-    monnaie total_solde_crediteur;
-    int32_t est_equilibree; /* 1 si total_debit == total_credit, sinon 0 */
-} Balance;
-
-Etat Reports_BuildBalance(const Session *session,const DATE *debut, const DATE *fin, Balance *sortie);
-void Reports_FreeBalance(Balance *balance);
+Monnaie balance_total_debit(const LigneBalance *lignes, size_t nombre);
+Monnaie balance_total_credit(const LigneBalance *lignes, size_t nombre);
+bool    balance_est_equilibree(const LigneBalance *lignes, size_t nombre);
+Etat    balance_verifier(const LigneBalance *lignes, size_t nombre);
 
 /* ------------------------------------------------------------------ */
-/* Grand livre (une seule compte)                                     */
+/* Grand livre (un seul compte)                                       */
 /* ------------------------------------------------------------------ */
 
-typedef struct {
-    DATE date;
-    int32_t ecriture_id;
-    char libelle[FNC_REPORT_LIBELLE_LEN];
-    monnaie debit;
-    monnaie credit;
-    monnaie solde; /* solde cumule apres cette ligne : debit - credit */
-} LigneGrandLivre;
+/* Solde du compte juste AVANT la date donnee (report a nouveau) */
+Monnaie grand_livre_solde_initial(const Compte *compte,
+                                  const Ecriture *ecritures, size_t nb_ecritures,
+                                  DATE avant_date);
 
-typedef struct {
-    int32_t compte_id;
-    char code[FNC_REPORT_CODE_LEN];
-    char nom[FNC_REPORT_NOM_LEN];
-    monnaie solde_ouverture; /* solde juste avant `debut` (debit - credit) */
-    LigneGrandLivre *lignes;     /* dans l'ordre chronologique */
-    size_t nb_lignes;
-    monnaie total_debit;
-    monnaie total_credit;
-    monnaie solde_cloture;   /* solde_ouverture + total_debit - total_credit */
-} GrandLivre;
+Etat grand_livre_generer(id_compte compte_id,
+                         const Compte *comptes, size_t nb_comptes,
+                         const Ecriture *ecritures, size_t nb_ecritures,
+                         DATE debut, DATE fin,
+                         Entree_GrandLivre *sortie, size_t capacite, size_t *nb_sortie);
 
-Etat Reports_BuildGrandLivre(const Session *session, int32_t compte_id, const DATE *debut, const DATE *fin, GrandLivre *sortie);
-void Reports_FreeGrandLivre(GrandLivre *grand_livre);
+/* Controle que le dernier solde cumule est coherent avec la ligne de balance */
+Etat grand_livre_verifier(const Entree_GrandLivre *entrees, size_t nombre,
+                          const LigneBalance *ligne);
 
 /* ------------------------------------------------------------------ */
-/* Bilan (situation patrimoniale a une date donnee)                   */
+/* Bilan                                                              */
 /* ------------------------------------------------------------------ */
 
-typedef struct {
-    int32_t compte_id;
-    char code[FNC_RAPPORT_CODE_LEN];
-    char nom[FNC_RAPPORT_NOM_LEN];
-    FNC_SectionBilan section;
-    monnaie montant; /* presente comme un montant positif dans son cote */
-} LigneBilan;
+/* Somme des soldes (debiteurs ou crediteurs selon sens) d'une classe de comptes */
+Monnaie bilan_somme_soldes(const Compte *comptes, size_t nb_comptes,
+                           const LigneBalance *balance, size_t nb_balance,
+                           ClasseCompte classe, SoldeNormal sens);
 
-typedef struct {
-    DATE date_arrete;
-    LigneBilan *lignes;
-    size_t nb_lignes;
-    monnaie total_actif;
-    monnaie total_passif;
-    monnaie resultat_net; /* classes 7 - 6, deja inclus dans total_passif */
-    int32_t est_equilibre;    /* 1 si total_actif == total_passif, sinon 0 */
-} Bilan;
+/* Resultat de l'exercice = produits nets (classe 7) - charges nettes (classe 6) */
+Monnaie bilan_resultat(const Compte *comptes, size_t nb_comptes,
+                       const LigneBalance *balance, size_t nb_balance);
 
-/* date_arrete == NULL -> fin de l'exercice comptable selon la configuration
- * de la session. */
-Etat creer_bilan(const Session *session, const DATE *date_arrete, Bilan *sortie);
-void liberer_bilan(Bilan *bilan);
+/* Le bilan a toujours 15 lignes : capacite >= 15 */
+Etat bilan_generer(const Compte *comptes, size_t nb_comptes,
+                   const LigneBalance *balance, size_t nb_balance,
+                   ligne_bilan *sortie, size_t capacite, size_t *nb_sortie,
+                   Monnaie *total_actif, Monnaie *total_passif);
 
-/* ---- Compte de résultat ---- */
+Etat bilan_verifier(Monnaie total_actif, Monnaie total_passif);
 
-#define CR_MAX_LIGNES 256
+/* ------------------------------------------------------------------ */
+/* Compte de resultat                                                 */
+/* ------------------------------------------------------------------ */
 
-typedef enum {
+#define CR_MAX_LIGNES 512
+
+typedef enum RubriqueCR {
     CR_PRODUITS_EXPLOITATION = 0,
     CR_CHARGES_EXPLOITATION,
     CR_PRODUITS_FINANCIERS,
@@ -133,20 +98,19 @@ typedef enum {
     CR_PRODUITS_EXCEPTIONNELS,
     CR_CHARGES_EXCEPTIONNELLES,
     CR_IMPOT_BENEFICES,
-    CR_NB_RUBRIQUES              /* toujours en dernier : sert de taille de tableau */
+    CR_NB_RUBRIQUES
 } RubriqueCR;
 
-typedef struct {
-    char code[16];
-    char nom[64];
+typedef struct LigneCompteResultat {
+    char       code[16];
+    char       nom[128];
     RubriqueCR rubrique;
-    Monnaie montant;
+    Monnaie    montant;      /* positif = situation normale (charge debitrice, produit crediteur) */
 } LigneCompteResultat;
 
-/* Tableau de taille fixe (pas de pointeur) : plus simple à lire depuis ctypes. */
-typedef struct {
+typedef struct CompteResultat {
     LigneCompteResultat lignes[CR_MAX_LIGNES];
-    int nb_lignes;
+    size_t  nb_lignes;
     Monnaie total_rubrique[CR_NB_RUBRIQUES];
     Monnaie total_produits;
     Monnaie total_charges;
@@ -154,9 +118,10 @@ typedef struct {
     Monnaie resultat_financier;
     Monnaie resultat_exceptionnel;
     Monnaie resultat_avant_impot;
-    Monnaie resultat_net;
+    Monnaie resultat_net;    /* positif = benefice, negatif = perte */
 } CompteResultat;
 
+/* comptes[], total_debit[], total_credit[] sont des tableaux paralleles (meme indice = meme compte) */
 Etat compte_resultat_generer(const Compte *comptes,
                              const Monnaie *total_debit,
                              const Monnaie *total_credit,
@@ -165,4 +130,34 @@ Etat compte_resultat_generer(const Compte *comptes,
 
 const char *compte_resultat_nom_rubrique(RubriqueCR rubrique);
 
-#endif  
+/* ------------------------------------------------------------------ */
+/* Interface "Session" : l'API que l'interface Python appelle          */
+/* ------------------------------------------------------------------ */
+/* Ces fonctions lisent directement le plan comptable et le journal de la
+ * session : l'appelant n'a ni tableau de comptes ni tableau d'ecritures a
+ * preparer. Les tableaux de sortie restent a sa charge (tableau + capacite). */
+
+/* capacite >= Session_avoir_nombre_comptes(session).
+ * Retourne ERR_AUCUNE_DONNEE_PERIODE (sortie remplie a zero) si aucune
+ * ecriture comptabilisee ne tombe dans [debut, fin]. */
+Etat Session_GenererBalance(const Session *session, DATE debut, DATE fin,
+                            LigneBalance *sortie, size_t capacite, size_t *nb_sortie);
+
+/* Appel avec capacite = 0 : *nb_sortie donne la taille necessaire
+ * (ERR_TRES_PETIT_BUFFER), comme grand_livre_generer. */
+Etat Session_GenererGrandLivre(const Session *session, id_compte compte_id, DATE debut, DATE fin,
+                               Entree_GrandLivre *sortie, size_t capacite, size_t *nb_sortie);
+
+/* Bilan arrete a date_arret (soldes cumules depuis le debut) : 15 lignes */
+Etat Session_GenererBilan(const Session *session, DATE date_arret,
+                          ligne_bilan *sortie, size_t capacite, size_t *nb_sortie,
+                          Monnaie *total_actif, Monnaie *total_passif);
+
+Etat Session_GenererCompteResultat(const Session *session, DATE debut, DATE fin,
+                                   CompteResultat *resultat);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
