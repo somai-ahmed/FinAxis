@@ -1,4 +1,6 @@
+#include <string.h>
 #include "Src/FinCore.Native/include/comptes.h"
+#include "Src/FinCore.Native/include/valdidation.h"
 
 #define COMPTES_CODE_LONGUEUR_MIN 3
 #define COMPTES_CODE_LONGUEUR_MAX 15
