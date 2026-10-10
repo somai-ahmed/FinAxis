@@ -174,10 +174,10 @@ Etat compte_resultat_generer(const Compte *comptes,
                              CompteResultat *resultat) {
     /* Première protection : aucun pointeur ne doit être vide. */
     if (comptes == NULL || total_debit == NULL || total_credit == NULL || resultat == NULL) {
-        return ERR_RAPPORT_PARAM_NULL;
+        return ERR_POINTEUR_NULLE;
     }
     if (nb_comptes < 0) {
-        return ERR_RAPPORT_PARAM_INVALIDE;
+        return ERR_ARGUMENT_INVALIDE;
     }
 
     /* memset remplit toute la structure avec des 0 : lignes vides, totaux a zero.
@@ -202,7 +202,7 @@ Etat compte_resultat_generer(const Compte *comptes,
 
         /* Le tableau de lignes est plein : on le signale au lieu de deborder . */
         if (resultat->nb_lignes >= CR_MAX_LIGNES) {
-            return ERR_RAPPORT_CAPACITE;
+            return ERR_TRES_PETIT_BUFFER;
         }
 
         int est_produit = (code[0] == '7');
