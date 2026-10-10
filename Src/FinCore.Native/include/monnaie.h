@@ -8,7 +8,7 @@
 
 typedef struct {
     int64_t unites_min ;
-    int8_t echelle
+    int8_t echelle;
 }monnaie;
 
 /* creation un montant nul a un echelle specefique */
@@ -47,7 +47,7 @@ monnaie soustraire_monnaie(monnaie m1,monnaie m2 , bool *success);
  *     - les commissions
  *     - les taux financiers
  */
-monnaie monnaie_multiplier_points_de_base(Monnaie m,int32_t points_de_base);
+monnaie monnaie_multiplier_points_de_base(monnaie m, int32_t points_de_base, bool *success);
 
 /* --------------------------------
      operations du comparison
