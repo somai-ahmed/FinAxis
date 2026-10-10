@@ -2,7 +2,7 @@
 #define PERIODES_H
 
 /* ============================================================
- * Moteur Comptable FinCore - Périodes fiscales
+ * Moteur Comptable FinAxis - Périodes fiscales
  * ============================================================
  * Une période fiscale est un intervalle de dates fermé
  * [date_debut, date_fin] portant un statut :
@@ -22,9 +22,9 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include <Src/FinCore.Native/include/types.h>
-#include <Src/FinCore.Native/include/errors.h>
-#include <dates.h>
+#include "types.h"
+#include "errors.h"
+#include "dates.h"
 
 #define PERIODES_PAR_ANNEE 12
 
