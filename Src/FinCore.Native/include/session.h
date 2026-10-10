@@ -28,6 +28,11 @@
 #include "errors.h"
 #include "dates.h"
 #include "ecritures.h"
+#include "periodes.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 
 #define FNC_SESSION_NOM_LEN 128
@@ -36,8 +41,6 @@
 /* ------------------------------------------------------------------ */
 /* configuration                                                      */
 /* ------------------------------------------------------------------ */
-
-typedef struct Session Session;
 
 /* Structure simple (uniquement des champs de taille fixe) afin que
  * ctypes puisse la mapper directement. */
@@ -99,6 +102,38 @@ Etat Session_AddEcriture(Session *session, const Ecriture *ecriture);
 
 size_t Session_GetEcritureCount(const Session *session);
 const Ecriture *Session_avoir_EcritureAt(const Session *session, size_t index);
+
+/* Cherche une ecriture par identifiant (NULL si absente) */
+const Ecriture *Session_chercher_Ecriture_Par_ID(const Session *session, IdEcriture id);
+
+/* Comptabilise un brouillon deja stocke : applique ses lignes aux soldes
+ * des comptes et le marque valide (est_validee = 1). */
+Etat Session_comptabiliserEcriture(Session *session, IdEcriture id);
+
+/* ------------------------------------------------------------------ */
+/* Periodes fiscales                                                  */
+/* ------------------------------------------------------------------ */
+
+/* Copie la periode dans la session. Echec si l'identifiant existe deja
+ * ou si les dates chevauchent une periode existante. */
+Etat Session_ajouterPeriode(Session *session, const prop_periode_fiscale *periode);
+
+size_t Session_avoir_nombre_periodes(const Session *session);
+const prop_periode_fiscale *Session_avoir_PeriodeAt(const Session *session, size_t index);
+const prop_periode_fiscale *Session_chercher_Periode_Par_ID(const Session *session, idperiodefiscale id);
+
+/* Changements de statut : OUVERTE <-> CLOTURE --> VEROUILLEE */
+Etat Session_cloturerPeriode(Session *session, idperiodefiscale id);
+Etat Session_rouvrirPeriode(Session *session, idperiodefiscale id);
+Etat Session_verrouillerPeriode(Session *session, idperiodefiscale id);
+
+/* ------------------------------------------------------------------ */
+/* Identifiants                                                       */
+/* ------------------------------------------------------------------ */
+
+/* Prochain identifiant libre (utile avant de construire un Compte / une Ecriture) */
+id_compte  Session_nouvel_id_compte(Session *session);
+IdEcriture Session_nouvel_id_ecriture(Session *session);
 
 #ifdef __cplusplus
 }
