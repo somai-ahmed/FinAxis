@@ -11,12 +11,11 @@
 #include <stdlib.h>  /* pour calloc/realloc/free : allocation dynamique */
 #include <string.h>  /* pour memcpy/strncpy/strcmp : copier et comparer */
 
+#incldue "Src/FinCore.Native/include/cJSON.h"
 #include "Src/FinCore.Native/include/session.h"
 #include "Src/FinCore.Native/include/comptes.h"
 #include "Src/FinCore.Native/include/ecritures.h"
 
-/* Capacite de depart des tableaux -- definition*/
-#define SESSION_CAPACITE_INITIALE 16
 
 /* ------------------------------------------------------------------
       les structures internes ( cache du l'utilisateur du DLL)       
