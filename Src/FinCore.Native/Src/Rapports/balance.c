@@ -9,7 +9,7 @@
 
 
 /* Indice du compte dans comptes[] */
-static Etat trouver_indice_compte(const Compte *comptes, size_t nb_comptes,nid_compte id, size_t *indice_out){
+static Etat trouver_indice_compte(const Compte *comptes, size_t nb_comptes, id_compte id, size_t *indice_out){
     size_t i;
 
     for (i = 0; i < nb_comptes; i++) {
@@ -29,7 +29,12 @@ static bool ecriture_retenue(const Ecriture *ecr, DATE debut, DATE fin){
 
 Etat balance_generer(const Compte *comptes, size_t nb_comptes, const Ecriture *ecritures, size_t nb_ecritures, DATE debut, DATE fin, LigneBalance *sortie, size_t capacite, size_t *nb_sortie){
 
-    if (!comptes || !sortie || nb_sortie) return ERR_POINTEUR_NULLE ; 
+    size_t i, j, k;          /* indices des boucles : comptes, ecritures, lignes */
+    size_t nb_retenues = 0;  /* nombre d'ecritures prises en compte dans la periode */
+    size_t indice = 0;       /* indice du compte trouve pour une ligne */
+    Etat etat;
+
+    if (!comptes || !nb_sortie) return ERR_POINTEUR_NULLE;
     if (!ecritures && nb_ecritures > 0) return ERR_POINTEUR_NULLE;
     if (!periodes_plage_valide(debut,fin)) return ERR_PLAGE_DATES_INVALIDE ; /* la date fin est avant la date de debut */
 
@@ -37,7 +42,7 @@ Etat balance_generer(const Compte *comptes, size_t nb_comptes, const Ecriture *e
     if (capacite < nb_comptes)
         return ERR_TRES_PETIT_BUFFER;
     if (sortie == NULL && nb_comptes > 0)
-        return ERR_POINTEUR_NULLE;
+        return ERR_POINTEUR_NULLE;   /* il faut un tableau de sortie des qu'il y a des comptes */
 
     /* la generation d'un boucle for avec l appelle des deux onctions de la bilblio <string.h>
         - memset : ou cette fonction est de la forme memset(destination, valeur, nombre_octets) cad du l'adresse memoire(dest) remplit toute sa zone mémoire avec des octets à 0 
