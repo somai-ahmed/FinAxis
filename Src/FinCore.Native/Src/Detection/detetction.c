@@ -30,16 +30,16 @@ interne (via malloc/realloc) et le laisse a NULL / 0 en cas d'erreur.
 Elles ne font pas partie de l'API publique de la DLL -> donc elles ne sont pas declares dans detection.h, seulement ici 
 ----------------------------------------------------------------------------------------------------------------------- */
 
-Etat detecter_benford_anomalies(Session *session, PeriodId id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats);
+Etat detecter_benford_anomalies(Session *session, idperiodefiscale id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats);
 
-Etat detecter_doublons(Session *session, PeriodId id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats);
+Etat detecter_doublons(Session *session, idperiodefiscale id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats);
 
-Etat detecter_montants_ronds(Session *session, PeriodId id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats);
+Etat detecter_montants_ronds(Session *session, idperiodefiscale id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats);
 
-Etat detecter_valeurs_aberrantes(Session *session, PeriodId id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats);
+Etat detecter_valeurs_aberrantes(Session *session, idperiodefiscale id_periode, const config_detection *cfg, Resultat_Detection **resultats, size_t *nombre_resultats);
 
 /* Calcule le rapport statistique complet de Benford (va etre codee dans benford.c) */
-Etat calculer_rapport_benford(Session *session, PeriodId id_periode, Rapport_Benford *rapport);
+Etat calculer_rapport_benford(Session *session, idperiodefiscale id_periode, Rapport_Benford *rapport);
 
 /* ------------------------------------------------------------------ 
                  Fonctions internes ( static functions)                                           
@@ -66,7 +66,7 @@ static Etat fusionner_resultats(Resultat_Detection **dest, size_t *nb_dest, Resu
     Resultat_Detection *nv_dest = realloc(*dest, nouvelle_taille * sizeof(Resultat_Detection));
     if (nv_dest == NULL) {
         free(source);
-        return ERR_DETECTION_MEMOIRE;
+        return ERR_SORTIE_DU_MEMOIRE;
     }
 
     /* memcpy copie nb_source structures d'un coup, juste après ce qui existait déjà */
@@ -115,10 +115,10 @@ void detection_config_par_defaut(config_detection* cfg) {
     cfg->fenetre_jours_doublon = 7;
 }
 
-Etat execute_detection(Session* session, PeriodId id_periode, const config_detection* cfg, Resultat_Detection** resultats, size_t* nombre_resultats) {
+Etat execute_detection(Session* session, idperiodefiscale id_periode, const config_detection* cfg, Resultat_Detection** resultats, size_t* nombre_resultats) {
  
     if (session == NULL || cfg == NULL || resultats == NULL || nombre_resultats == NULL) {
-        return ERR_DETECTION_PARAM_NULL;
+        return ERR_POINTEUR_NULLE;
     }
 
     *resultats = NULL;
@@ -130,7 +130,7 @@ Etat execute_detection(Session* session, PeriodId id_periode, const config_detec
      */
     struct {
         int est_active;
-        Etat (*executer)(Session*, PeriodId, const config_detection*, Resultat_Detection**, size_t*);
+        Etat (*executer)(Session*, idperiodefiscale, const config_detection*, Resultat_Detection**, size_t*);
     }
   
    methodes[] = {
@@ -166,9 +166,9 @@ Etat execute_detection(Session* session, PeriodId id_periode, const config_detec
     return ETAT_OK;
 }
 
-Etat Executer_Analyse_Benford(Session* session, PeriodId id_periode, Rapport_Benford* rapport) {
+Etat Executer_Analyse_Benford(Session* session, idperiodefiscale id_periode, Rapport_Benford* rapport) {
     if (session == NULL || rapport == NULL) {
-        return ERR_DETECTION_PARAM_NULL;
+        return ERR_POINTEUR_NULLE;
     }
 
     /* Le calcul réel (extraction des premiers chiffres, comparaison à la loi
