@@ -11,11 +11,11 @@
 #include <stdlib.h>
 #include <string.h>  
 
-#include "session.h"
-#include "comptes.h"
-#include "ecritures.h"
-#include "periodes.h"
-#include "validation.h"
+#include "Src/FinCore.Native/include/session.h"
+#include "Src/FinCore.Native/include/comptes.h"
+#include "Src/FinCore.Native/include/ecritures.h"
+#include "Src/FinCore.Native/include/periodes.h"
+#include "Src/FinCore.Native/include/validation.h"
 
 /* Capacite de depart des tableaux -- definition*/
 #define SESSION_CAPACITE_INITIALE 16
