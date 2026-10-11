@@ -1,294 +1,214 @@
 #include <Src/FinCore.Native/include/monnaie.h>
 #include <ctype.h>
 
-/* creation un montant nul a un echelle specefique */
-monnaie initiation_monnaie(int8_t echelle){
+
+/* creation d'un montant nul a une echelle donnee */
+monnaie initiation_monnaie(int8_t echelle) {
     monnaie m;
-    m.unites_min  = 0;
+    m.unites_min = 0;
     m.echelle = echelle;
     return m;
 }
 
-monnaie monnaie_depuis_unites_mineures( int64_t unites_min, int8_t echelle){
+monnaie monnaie_depuis_unites_mineures(int64_t unites_min, int8_t echelle) {
     monnaie m = initiation_monnaie(echelle);
-    m.unites_min = unites_min ;
+    m.unites_min = unites_min;
     return m;
 }
 
-monnaie monnaie_depuis_chaine(const char *chaine, int8_t echelle, bool success){
+monnaie monnaie_depuis_chaine(const char *chaine, int8_t echelle, bool *success) {
     monnaie m = initiation_monnaie(echelle);
-    if (success) success = false ;
-    if (!chaine || echelle < 0) {return m ; }
-
     const char *p = chaine;
+    int negatif = 0;
+    int64_t valeur = 0;
+    int decimales_lues = 0;   /* nombre de chiffres lus apres la virgule */
+
+    if (success) *success = false;   /* echec par defaut, on le passe a true a la fin */
+    if (chaine == NULL || echelle < 0) return m;
 
     /* 1. signe optionnel */
-    int negatif = 0;
     if (*p == '+' || *p == '-') {
-        negatif = (*p == '-'); /* negatif recoit 1 si negatif (variable booleene) */
+        negatif = (*p == '-');
         p++;
     }
 
-    /* il faut au moins un chiffre après le signe */
-    if (!isdigit((unsigned char)*p)) {
-        success = false;
-        return m;
-    }
+    /* il faut au moins un chiffre apres le signe */
+    if (!isdigit((unsigned char)*p)) return m;
 
-    /* partie numerique */
-    int64_t valeur = 0;
+    /* 2. partie entiere */
     while (isdigit((unsigned char)*p)) {
         int chiffre = *p - '0';
-
-        if (valeur > (INT64_MAX - chiffre) / 10) {
-            success = false;
-            return m;  // overflow -> echec
-            
-        }
-
+        if (valeur > (INT64_MAX - chiffre) / 10) return m;   /* depassement -> echec */
         valeur = valeur * 10 + chiffre;
         p++;
     }
 
-    /* 3. partie fractionnaire (optionnelle) */
-    int8_t partie_decimale = 0;
+    /* 3. partie fractionnaire (optionnelle, '.' ou ',') */
     if (*p == '.' || *p == ',') {
         p++;
-
         while (isdigit((unsigned char)*p)) {
-            if (partie_decimale >= echelle) {
-                return m;  // trop de decimales pour l'echelle -> rejet
-            }
-
             int chiffre = *p - '0';
-
-            if (valeur > (INT64_MAX - chiffre) / 10) {
-                return m;  // overflow
-            }
-
+            if (decimales_lues >= echelle) return m;   /* trop de decimales pour l'echelle */
+            if (valeur > (INT64_MAX - chiffre) / 10) return m;
             valeur = valeur * 10 + chiffre;
-            partie_decimale++;
+            decimales_lues++;
             p++;
         }
     }
-    /* 4. il ne doit rien rester d'invalide en fin de chaine */
-    if (*p != '\0') {
-        return m;
-    }
 
-    /* 5. completer avec des zeros si moins de decimales que l'echelle */
+    /* 4. il ne doit rien rester apres le nombre */
+    if (*p != '\0') return m;
+
+    /* 5. completer avec des zeros si on a lu moins de decimales que l'echelle */
     while (decimales_lues < echelle) {
-        if (valeur > INT64_MAX / 10) {
-            return m;  // overflow (cas extreme)
-        }
+        if (valeur > INT64_MAX / 10) return m;
         valeur *= 10;
         decimales_lues++;
     }
 
-    /* 6. appliquer le signe et valider */
+    /* 6. appliquer le signe */
     m.unites_min = negatif ? -valeur : valeur;
-    m.echelle = echelle;
-
     if (success) *success = true;
     return m;
 }
 
-monnaie ajouter_monnaie(monnaie m1 ,monnaie m2 , bool success){
+monnaie ajouter_monnaie(monnaie m1, monnaie m2, bool *success) {
     monnaie resultat = initiation_monnaie(m1.echelle);
-    if (success) *success = false;  // echec
+    if (success) *success = false;
 
     /* regle d'or : on n'additionne que des montants de meme echelle */
-    if (m1.echelle != m2.echelle) {
-        return resultat;
-    }
-    /* verification d'overflow AVANT l'addition, pas apres */
-    if ((m2.unites_min > 0 && m1.unites_min > INT64_MAX - m2.unites_min) || (m2.unites_min < 0 && m1.unites_min < INT64_MIN - m2.unites_min)) {
-        return resultat;
-    }
-    
-    resultat.unites_min = m1.unites_min + m2.unites_min;
-    resultat.echelle = m1.echelle;
+    if (m1.echelle != m2.echelle) return resultat;
 
+    /* verification du depassement AVANT l'addition, jamais apres */
+    if ((m2.unites_min > 0 && m1.unites_min > INT64_MAX - m2.unites_min) ||
+        (m2.unites_min < 0 && m1.unites_min < INT64_MIN - m2.unites_min)) {
+        return resultat;
+    }
+
+    resultat.unites_min = m1.unites_min + m2.unites_min;
     if (success) *success = true;
     return resultat;
 }
 
 monnaie soustraire_monnaie(monnaie m1, monnaie m2, bool *success) {
-    
     monnaie resultat = initiation_monnaie(m1.echelle);
+    if (success) *success = false;
 
-    if (success) *success = false;  // echec 
+    if (m1.echelle != m2.echelle) return resultat;
 
-    /* meme regle que l'addition : echelles identiques obligatoires */
-    if (m1.echelle != m2.echelle) {
-        return resultat;
-    }
-
-    /* verification d'overflow/underflow AVANT la soustraction :
-       m1 - m2 deborde si :
-       - m2 est positif et m1 est deja trop proche de INT64_MIN
-       - m2 est negatif et m1 est deja trop proche de INT64_MAX */
+    /* m1 - m2 deborde si m2 > 0 et m1 trop proche de INT64_MIN,
+     * ou si m2 < 0 et m1 trop proche de INT64_MAX */
     if ((m2.unites_min > 0 && m1.unites_min < INT64_MIN + m2.unites_min) ||
         (m2.unites_min < 0 && m1.unites_min > INT64_MAX + m2.unites_min)) {
         return resultat;
     }
 
     resultat.unites_min = m1.unites_min - m2.unites_min;
-    resultat.echelle = m1.echelle;
-
     if (success) *success = true;
     return resultat;
 }
 
 /* ============================================================
- * Multiplication par points de base
+ * Multiplication par points de base (10000 points = 100 %)
  * ============================================================ */
 monnaie monnaie_multiplier_points_de_base(monnaie m, int32_t points_de_base, bool *success) {
-
     monnaie resultat = initiation_monnaie(m.echelle);
-
-    if (success) *success = false; // echec par defaut
-
-    if (m.echelle < 0) {
-        return resultat;
-    }
-
-    /* on calcule en int64 : unites_min * points_de_base, puis on divise par 10000
-       (10000 points de base = 100.00%) */
-
     int64_t valeur = m.unites_min;
     int64_t pdb = (int64_t)points_de_base;
 
-    /* verification d'overflow AVANT la multiplication */
-    if (valeur != 0) {
-        if (pdb > 0) {
-            if (valeur > 0 && valeur > INT64_MAX / pdb) {
-                return resultat;
-            }
-            if (valeur < 0 && valeur < INT64_MIN / pdb) {
-                return resultat;
-            }
-        } else if (pdb < 0) {
-            if (valeur > 0 && valeur > INT64_MIN / pdb) {
-                return resultat;
-            }
-            if (valeur < 0 && valeur < INT64_MAX / pdb) {
-                return resultat;
-            }
+    if (success) *success = false;
+    if (m.echelle < 0) return resultat;
+
+    /* verification du depassement AVANT la multiplication */
+    if (valeur != 0 && pdb != 0) {
+        if ((valeur > 0 && pdb > 0 && valeur > INT64_MAX / pdb) ||
+            (valeur < 0 && pdb < 0 && valeur < INT64_MAX / pdb) ||
+            (valeur > 0 && pdb < 0 && pdb < INT64_MIN / valeur) ||
+            (valeur < 0 && pdb > 0 && valeur < INT64_MIN / pdb)) {
+            return resultat;
         }
     }
 
-    int64_t produit = valeur * pdb;
-
-    /* division entiere par 10000 (arrondi vers zero) */
-    int64_t resultat_valeur = produit / 10000;
-
-    resultat.unites_min = resultat_valeur;
-    resultat.echelle = m.echelle;
-
+    /* division entiere par 10000 : arrondi vers zero */
+    resultat.unites_min = (valeur * pdb) / 10000;
     if (success) *success = true;
     return resultat;
 }
 
 /*--------------------------
-        COMPARISON           
+        COMPARAISON
 ---------------------------*/
 
-/* l'output de cette fonction est entier 
-    on va tester et retourner 3 majeur nombre
-    la fonction retourne :
-        --> 0 :: si un erreur
-        --> -1 :: si le 2eme montant superieur au premier
-        --> 1 :: si le 1er montant superieur au premier
-*/
-int comparer_monnaie(monnaie m1,monnaie m2){
-    if (m1.echelle != m2.echelle) {
-        return 0;
-    }
-
-    if (m1.valeur_mineure < m2.valeur_mineure) {
-        return -1;
-    }
-    if (m1.valeur_mineure > m2.valeur_mineure) {
-        return 1;
-    }
+/* retourne -1 si m1 < m2, 0 si egaux, 1 si m1 > m2
+ * (0 aussi si les echelles different : comparaison impossible) */
+int monnaie_comparer(monnaie m1, monnaie m2) {
+    if (m1.echelle != m2.echelle) return 0;
+    if (m1.unites_min < m2.unites_min) return -1;
+    if (m1.unites_min > m2.unites_min) return 1;
     return 0;
 }
 
-/* cette fonction retourne une variable booleenne cad
-    du "VRAI" ou "FAUX" 
-    si le montant est negatif :: la fonction retourne VRAI et inversement
-    */
 bool monnaie_est_negative(monnaie m) {
-    return m.valeur_mineure < 0;
+    return m.unites_min < 0;
 }
-/* cette fonction retourne une variable booleenne cad
-    du "VRAI" ou "FAUX" 
-    si le montant est NULLE :: la fonction retourne VRAI et sinon FAUX
-    */
+
 bool monnaie_est_nulle(monnaie m) {
-    return m.valeur_mineure == 0;
+    return m.unites_min == 0;
 }
 
 /*----------------------------
-        FOMRATAGE
+        FORMATAGE
 -----------------------------*/
-bool monnaie_vers_chaine(monnaie m, char *tampon, size_t taille_tampon) {
-    if (!tampon || taille_tampon == 0 || m.echelle < 0) {
-        return false;
-    }
-    int64_t valeur = m.valeur_mineure;
-    bool negatif = valeur < 0;
+void monnaie_en_chaine(monnaie m, char *buffer, size_t taille_buffer) {
+    char chiffres[32];   /* chiffres du montant, ecrits a l'envers */
+    int n = 0;           /* nombre de chiffres ecrits dans chiffres[] */
+    size_t pos = 0;
+    int partie_entiere_len;
+    int i;
+    bool negatif = m.unites_min < 0;
+    /* valeur absolue sans risque pour INT64_MIN */
+    uint64_t valeur_abs = negatif ? (uint64_t)(-(m.unites_min + 1)) + 1 : (uint64_t)m.unites_min;
 
-    uint64_t valeur_abs = negatif ? (uint64_t)(-(valeur + 1)) + 1 : (uint64_t)valeur;
-
-    /* on construit la chaine des chiffres a l'envers dans un tampon local */
-    char chiffres[32];
-    int i = 0;
+    if (buffer == NULL || taille_buffer == 0) return;
+    buffer[0] = '\0';
+    if (m.echelle < 0 || m.echelle > 18) return;
 
     if (valeur_abs == 0) {
-        chiffres[i++] = '0';
+        chiffres[n++] = '0';
     } else {
         while (valeur_abs > 0 && n < (int)sizeof(chiffres)) {
-            chiffres[i++] = (char)('0' + (valeur_abs % 10));
+            chiffres[n++] = (char)('0' + (valeur_abs % 10));
             valeur_abs /= 10;
         }
     }
-    /* completer avec des zeros a gauche si moins de chiffres que l'echelle + 1
-       (il faut au moins un chiffre avant la virgule) */
+
+    /* il faut au moins un chiffre avant la virgule : on complete avec des zeros */
     while (n < m.echelle + 1 && n < (int)sizeof(chiffres)) {
         chiffres[n++] = '0';
     }
 
-    /* construction de la chaine finale */
-    size_t pos = 0;
-
     if (negatif) {
-        if (pos + 1 >= taille_tampon) return false;
-        tampon[pos++] = '-';
+        if (pos + 1 >= taille_buffer) { buffer[0] = '\0'; return; }
+        buffer[pos++] = '-';
     }
 
-    int partie_entiere_len = n - m.echelle;
+    partie_entiere_len = n - m.echelle;
 
-    /* partie entiere (les chiffres sont dans chiffres[] a l'envers) */
-    for (int i = 0; i < partie_entiere_len; i++) {
-        if (pos + 1 >= taille_tampon) return false;
-        tampon[pos++] = chiffres[n - 1 - i];
+    /* partie entiere : on relit chiffres[] a l'endroit */
+    for (i = 0; i < partie_entiere_len; i++) {
+        if (pos + 1 >= taille_buffer) { buffer[0] = '\0'; return; }
+        buffer[pos++] = chiffres[n - 1 - i];
     }
 
     /* partie decimale */
     if (m.echelle > 0) {
-        if (pos + 1 >= taille_tampon) return false;
-        tampon[pos++] = '.';
-
-        for (int i = 0; i < m.echelle; i++) {
-            if (pos + 1 >= taille_tampon) return false;
-            tampon[pos++] = chiffres[m.echelle - 1 - i];
+        if (pos + 1 >= taille_buffer) { buffer[0] = '\0'; return; }
+        buffer[pos++] = '.';
+        for (i = 0; i < m.echelle; i++) {
+            if (pos + 1 >= taille_buffer) { buffer[0] = '\0'; return; }
+            buffer[pos++] = chiffres[m.echelle - 1 - i];
         }
     }
 
-    if (pos + 1 > taille_tampon) return false;
-    tampon[pos] = '\0';
-
-    return true ;
+    buffer[pos] = '\0';
 }
