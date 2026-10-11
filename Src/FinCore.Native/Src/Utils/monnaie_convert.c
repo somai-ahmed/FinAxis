@@ -1,4 +1,4 @@
-#include <Src/FinCore.Native/Src/Utils/include/monnaie_convert.h>
+#include <Src/FinCore.Native/include/monnaie_convert.h>
 
 #include <stdint.h>
 
