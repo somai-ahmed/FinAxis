@@ -1,6 +1,5 @@
 #include "Src/FinCore.Native/include/dates.h"
 
-
 bool est_annee_bissextile(int32_t annee){
     return (annee % 4 == 0 && annee % 100 != 0) || (annee % 400 == 0);
 }
@@ -69,58 +68,29 @@ int comparer_dates(DATE d1, DATE d2){
     return 0 ; /*d1 et d2 sont identiques*/
 }
 
-bool date_inclus_dans_periode (DATE d , DATE debut_periode , DATE fin_periode){
-    /* la fonction est du type d'output 'BOOLEEN' , c'est a dire elle retourne 
-        vrai ou faux selon la condition 
+bool date_inclus_dans_periode(DATE d, DATE debut_periode, DATE fin_periode) {
+    /* vrai si debut_periode <= d <= fin_periode (bornes incluses) */
+    if (!date_valide(d) || !date_valide(debut_periode) || !date_valide(fin_periode)) return false;
 
-    * le logique du cette fonction va etre comme ca
-            -> analyse de la date : appliquer tous les verification
-            -> comparaison
-            (d'autre maniere :: l'usage des fonctions precedents */
-    if (!date_valide(d) || !date_valide(debut_periode) || !date_valide(fin_periode) return false;
+    /* une periode a l'envers (debut apres fin) n'a aucune date */
+    if (comparer_dates(debut_periode, fin_periode) > 0) return false;
 
-    if ( comparer_dates(debut_periode , fin_periode) == -1) return false;
-
-    if(comparer_dates(debut_periode,fin_periode)==0 && !comparer_dates(d,debut_periode)) return false ;
-
-    return true;
-}
-    
-DATE ajouter_jours_au_date(DATE d,int32_t jours){
-    if(!date_valide(d)) return d;
-
-    if (jours<0) return d;
-
-    while(jours>0){
-        int32_t jours_mois = jours_dans_mois(d.mois,d.annee);
-        if(d.jour+jours <= jours_mois){
-            d.jour+=jours;
-            jours = 0; /*bloquage du boucle while*/
-        }
-        else{
-            jours = jours_mois - d.jour + 1;
-            d.jour = 1 ;
-
-            if(d.mois == 12){
-                d.annee++;
-                d.mois = 1;
-            }
-            else{
-                d.mois++ ;
-            }
-        }
-    }
-    return d;
-    
+    return comparer_dates(d, debut_periode) >= 0 && comparer_dates(d, fin_periode) <= 0;
 }
 
-DATE difference_date(DATE d1, DATE d2){
-    if (!date_valide(d1) || !date_valide(d2))
-        return DATE_ERREUR;
+DATE ajouter_jours_au_date(DATE d, int32_t jours) {
+    /* on passe par le numero de jour julien : l'addition devient simple
+     * et les changements de mois / d'annee sont geres automatiquement */
+    if (!date_valide(d)) return d;
+
+    return jdn_en_date(date_en_jdn(d) + jours);
+}
+
+DATE difference_date(DATE d1, DATE d2) {
+    if (!date_valide(d1) || !date_valide(d2)) return DATE_ERREUR;
 
     int32_t cmp = comparer_dates(d1, d2);
-    if (cmp == 0)
-        return (DATE){ .annee = 0, .mois = 0, .jour = 0 };
+    if (cmp == 0) return (DATE){ .annee = 0, .mois = 0, .jour = 0 };
 
     DATE date_recente  = (cmp == 1) ? d1 : d2;
     DATE date_ancienne = (cmp == 1) ? d2 : d1;
@@ -129,6 +99,7 @@ DATE difference_date(DATE d1, DATE d2){
     int32_t mois   = date_recente.mois  - date_ancienne.mois;
     int32_t annees = date_recente.annee - date_ancienne.annee;
 
+    /* emprunt : si les jours sont negatifs on prend les jours du mois precedent */
     if (jours < 0) {
         int32_t mois_prec = date_recente.mois - 1;
         int32_t annee_du_mois_prec = date_recente.annee;
@@ -140,6 +111,7 @@ DATE difference_date(DATE d1, DATE d2){
         mois--;
     }
 
+    /* meme principe pour les mois negatifs : on emprunte une annee */
     if (mois < 0) {
         mois += 12;
         annees--;
@@ -148,15 +120,11 @@ DATE difference_date(DATE d1, DATE d2){
     return (DATE){ .annee = annees, .mois = mois, .jour = jours };
 }
 
-int32_t date_en_jdn(DATE d)
-{
-    int32_t a;
-    int32_t y;
-    int32_t m;
-
-    a = (14 - d.mois) / 12;
-    y = d.annee + 4800 - a;
-    m = d.mois + 12 * a - 3;
+int32_t date_en_jdn(DATE d) {
+    /* formule classique du calendrier gregorien -> numero de jour julien */
+    int32_t a = (14 - d.mois) / 12;
+    int32_t y = d.annee + 4800 - a;
+    int32_t m = d.mois + 12 * a - 3;
 
     return d.jour
            + (153 * m + 2) / 5
@@ -167,82 +135,78 @@ int32_t date_en_jdn(DATE d)
            - 32045;
 }
 
-DATE jdn_en_date(int32_t jdn)
-{
+DATE jdn_en_date(int32_t jdn) {
+    /* operation inverse de date_en_jdn */
     DATE d;
-    int32_t a, b, c, e, m;
+    int32_t a = jdn + 32044;
+    int32_t b = (4 * a + 3) / 146097;
+    int32_t c = a - (146097 * b) / 4;
+    int32_t e = (4 * c + 3) / 1461;
+    int32_t f = c - (1461 * e) / 4;
+    int32_t m = (5 * f + 2) / 153;
 
-    a = jdn + 32044;
-    b = (4 * a + 3) / 146097;
-    c = a - (146097 * b) / 4;
-    e = (4 * c + 3) / 1461;
-    m = (5 * ((5 * e + 2) % 153)) / 5;
-
-    d.jour = c - (153 * m + 2) / 5 + 1;
-    d.mois = m + 3 - 12 * (m / 10);
+    d.jour  = f - (153 * m + 2) / 5 + 1;
+    d.mois  = m + 3 - 12 * (m / 10);
     d.annee = 100 * b + e - 4800 + (m / 10);
 
     return d;
 }
 
-bool analyser_date(const char *date_en_texte , DATE_FORMAT format , DATE *resultat){
-    if(!date_en_texte || !resultat) return false;
+bool analyser_date(const char *date_en_texte, DATE_FORMAT format, DATE *resultat) {
+    int jj = 0, mm = 0, aaaa = 0;
+    int nb_lus;   /* nombre de nombres lus par sscanf */
+    DATE candidate;
 
-    int jj,mm,aaaa;
-    int liresucces;
-    
-    switch(format){
-        case FORMAT_MMJJAAAA :
-            liresucces = sscanf(date_en_texte, "%d/%d/%d", &jj, &mm, &aaaa); // jour, mois, annee
-            break;
-
-        case DATE_FORMAT_MMJJAAAA :
-            liresucces = sscanf(date_en_texte, "%d/%d/%d", &mm, &jj, &aaaa); // jour, mois, annee
-            break;
-
-        case FORMAT_ISO:
-            liresucces = sscanf(date_en_texte, "%d-%d-%d", &aaaa, &mm, &jj); // annee, mois, jour
-            break;
-
-        case default :
-            return false;
-    }
-
-    if(liresuccess!=3) return false;
-
-    if (mm < 1 || mm > 12) return false;
-
-    if (!date_valide(jj, mm, aaaa)) return false;   // délégation, pas de duplication
-
-    resultat->jour = jj;
-    resultat->mois = mm;
-    resultat->annee = aaaa;
-    
-    return true;
-    
-}
-
-bool formater_date(DATE date, DATE_FORMAT format, char *buffer, int32_t taille_buffer) {
-    if (!buffer || taille_buffer <= 0) return false;
-
-    if (!date_valide(d)) return false; // délégation, comme avant
-
-    int ecrit;
+    if (date_en_texte == NULL || resultat == NULL) return false;
 
     switch (format) {
-        case FORMAT_JJMMAAAA:
-            ecrit = snprintf(buffer, taille_buffer, "%02d/%02d/%04d", date.jour, date.mois, date.annee);
+        case DATE_FORMAT_JJMMAAAA:
+            nb_lus = sscanf(date_en_texte, "%d/%d/%d", &jj, &mm, &aaaa);
             break;
-        case FORMAT_MMJJAAAA:
-            ecrit = snprintf(buffer, taille_buffer, "%02d/%02d/%04d", date.mois, date.jour, date.annee);
+        case DATE_FORMAT_MMJJAAAA:
+            nb_lus = sscanf(date_en_texte, "%d/%d/%d", &mm, &jj, &aaaa);
             break;
-        case FORMAT_ISO:
-            ecrit = snprintf(buffer, taille_buffer, "%04d-%02d-%02d", date.annee, date.mois, date.jour);
+        case DATE_FORMAT_ISO:
+            nb_lus = sscanf(date_en_texte, "%d-%d-%d", &aaaa, &mm, &jj);
             break;
         default:
             return false;
     }
 
+    if (nb_lus != 3) return false;
+
+    candidate.jour  = jj;
+    candidate.mois  = mm;
+    candidate.annee = aaaa;
+
+    /* date_valide fait deja toutes les verifications (mois, jours, bissextile) */
+    if (!date_valide(candidate)) return false;
+
+    *resultat = candidate;
+    return true;
+}
+
+bool formater_date(DATE date, DATE_FORMAT format, char *buffer, int32_t taille_buffer) {
+    int ecrit;
+
+    if (buffer == NULL || taille_buffer <= 0) return false;
+    if (!date_valide(date)) return false;
+
+    switch (format) {
+        case DATE_FORMAT_JJMMAAAA:
+            ecrit = snprintf(buffer, (size_t)taille_buffer, "%02d/%02d/%04d", date.jour, date.mois, date.annee);
+            break;
+        case DATE_FORMAT_MMJJAAAA:
+            ecrit = snprintf(buffer, (size_t)taille_buffer, "%02d/%02d/%04d", date.mois, date.jour, date.annee);
+            break;
+        case DATE_FORMAT_ISO:
+            ecrit = snprintf(buffer, (size_t)taille_buffer, "%04d-%02d-%02d", date.annee, date.mois, date.jour);
+            break;
+        default:
+            return false;
+    }
+
+    /* snprintf renvoie la taille voulue : si elle depasse le buffer, le texte est tronque */
     if (ecrit < 0 || ecrit >= taille_buffer) return false;
 
     return true;
