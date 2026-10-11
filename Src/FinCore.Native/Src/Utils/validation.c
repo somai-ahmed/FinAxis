@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+
 bool valider_chaine_non_vide(const char *chaine){
   if(chaine==NULL) return false;
   if(*chaine == '\0') return false;  
@@ -87,6 +88,6 @@ bool valider_plage_i64(int64_t valeur, int64_t min, int64_t max){
 
 bool valider_montant(monnaie m, bool autoriser_negatif){
     if (m.echelle < 0) return false;
-    if (!autoriser_negatif && m.valeur_mineure < 0) return false;
+    if (!autoriser_negatif && m.unites_min < 0) return false;
     return true;
 }
