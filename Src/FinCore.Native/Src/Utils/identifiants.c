@@ -14,7 +14,7 @@ int64_t generateur_id_suivant(generateur_id *gen){
 }
 
 bool generateur_id_reference(generateur_id *gen, const char *prefixe, int largeur_min, char *tampon, size_t taille_tampon){
-    if (!gen || !prefixe || largeur_min ==0 ||taille_tampon <0) return false ;
+    if (!gen || !prefixe || largeur_min <= 0 || taille_tampon == 0) return false ;
 
     int64_t id = generateur_id_suivant(gen);
     if (id<0) return false;
