@@ -1,7 +1,7 @@
 # Le Grand Livre expliqué aux programmeurs
 
 Sources : `Src/FinCore.Native/Src/Rapports/grand_livre.c`, `include/rapports.h`, `services/report_service.py`.
-Prérequis : [01_fondations_comptables.fr.md](01_fondations_comptables.fr.md). Lié : [02_bilan.fr.md](02_bilan.fr.md).
+Prérequis : [fondations_comptables](fondations_comptables.md). Lié : [bilan](bilan.md).
 
 ---
 
