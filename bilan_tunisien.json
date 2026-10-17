@@ -1,0 +1,3017 @@
+{
+  "country": "Tunisie",
+  "source_document": "Extrait fourni par l’utilisateur : Nomenclature des comptes et fonctionnement général des comptes",
+  "note": "Extrait extrait automatiquement du texte fourni. Vérifier les intitulés et l’exhaustivité des informations avant toute utilisation comme plan comptable officiel en production.",
+  "accounts": [
+    {
+      "code": "10",
+      "label": "Capital.",
+      "class": 1
+    },
+    {
+      "code": "11",
+      "label": "Réserves et primes liées au capital.",
+      "class": 1
+    },
+    {
+      "code": "12",
+      "label": "Résultats reportés.",
+      "class": 1
+    },
+    {
+      "code": "13",
+      "label": "Résultat de l'exercice.",
+      "class": 1
+    },
+    {
+      "code": "14",
+      "label": "Autres capitaux propres.",
+      "class": 1
+    },
+    {
+      "code": "15",
+      "label": "Provisions pour risques & charges.",
+      "class": 1
+    },
+    {
+      "code": "16",
+      "label": "Emprunts & dettes assimilées.",
+      "class": 1
+    },
+    {
+      "code": "17",
+      "label": "Comptes de liaison des établissements & succursales.",
+      "class": 1
+    },
+    {
+      "code": "18",
+      "label": "Autres Passifs non courants. Classe 1 : Comptes de capitaux propres et passifs non courants",
+      "class": 1
+    },
+    {
+      "code": "21",
+      "label": "Immobilisations incorporelles.",
+      "class": 2
+    },
+    {
+      "code": "22",
+      "label": "Immobilisations corporelles.",
+      "class": 2
+    },
+    {
+      "code": "23",
+      "label": "Immobilisations en cours.",
+      "class": 2
+    },
+    {
+      "code": "24",
+      "label": "Immobilisations à statut juridique particulier.",
+      "class": 2
+    },
+    {
+      "code": "25",
+      "label": "Participations & créances liées à des participations.",
+      "class": 2
+    },
+    {
+      "code": "26",
+      "label": "Autres immobilisations financières.",
+      "class": 2
+    },
+    {
+      "code": "27",
+      "label": "Autres actifs non courants.",
+      "class": 2
+    },
+    {
+      "code": "28",
+      "label": "Amortissements des immobilisations.",
+      "class": 2
+    },
+    {
+      "code": "29",
+      "label": "Provisions pour dépréciation des actifs immobilisés. Classe 2 . Comptes d'actifs non courants",
+      "class": 2
+    },
+    {
+      "code": "31",
+      "label": "Matières premières & fournitures liées.",
+      "class": 3
+    },
+    {
+      "code": "32",
+      "label": "Autres approvisionnements.",
+      "class": 3
+    },
+    {
+      "code": "33",
+      "label": "En-cours de production de biens.",
+      "class": 3
+    },
+    {
+      "code": "34",
+      "label": "En-cours de production de services.",
+      "class": 3
+    },
+    {
+      "code": "35",
+      "label": "Stocks de produits.",
+      "class": 3
+    },
+    {
+      "code": "37",
+      "label": "Stocks de marchandises.",
+      "class": 3
+    },
+    {
+      "code": "39",
+      "label": "Provisions pour dépréciation des stocks (à ventiler selon la nomenclature de cette classe). Liste des comptes Classe 4 Comptes de tiers",
+      "class": 3
+    },
+    {
+      "code": "40",
+      "label": "Fournisseurs & comptes rattachés.",
+      "class": 4
+    },
+    {
+      "code": "41",
+      "label": "Clients & comptes rattachés.",
+      "class": 4
+    },
+    {
+      "code": "42",
+      "label": "Personnel et comptes rattachés.",
+      "class": 4
+    },
+    {
+      "code": "43",
+      "label": "Etat et collectivités publiques.",
+      "class": 4
+    },
+    {
+      "code": "44",
+      "label": "Sociétés du groupe & associés.",
+      "class": 4
+    },
+    {
+      "code": "45",
+      "label": "Débiteurs divers et Créditeurs divers.",
+      "class": 4
+    },
+    {
+      "code": "46",
+      "label": "Comptes transitoires ou d'attente.",
+      "class": 4
+    },
+    {
+      "code": "47",
+      "label": "Comptes de régularisation.",
+      "class": 4
+    },
+    {
+      "code": "48",
+      "label": "Provisions courantes pour risques et charges.",
+      "class": 4
+    },
+    {
+      "code": "49",
+      "label": "Provisions pour dépréciation des comptes de tiers. Classe 4 : Comptes de tiers",
+      "class": 4
+    },
+    {
+      "code": "50",
+      "label": "Emprunts et autres dettes financières courants.",
+      "class": 5
+    },
+    {
+      "code": "51",
+      "label": "Prêts et autres créances financières courants.",
+      "class": 5
+    },
+    {
+      "code": "52",
+      "label": "Placements courants.",
+      "class": 5
+    },
+    {
+      "code": "53",
+      "label": "Banques, établissements financiers et assimilés.",
+      "class": 5
+    },
+    {
+      "code": "54",
+      "label": "Caisse.",
+      "class": 5
+    },
+    {
+      "code": "55",
+      "label": "Régies d'avances et accréditifs.",
+      "class": 5
+    },
+    {
+      "code": "58",
+      "label": "Virements internes.",
+      "class": 5
+    },
+    {
+      "code": "59",
+      "label": "Provisions pour dépréciation des comptes financiers. (Même ventilation que les comptes de la classe 5). Liste des comptes Classe 6 Comptes de charges",
+      "class": 5
+    },
+    {
+      "code": "60",
+      "label": "Achats (sauf 603) iii[iii][3].",
+      "class": 6
+    },
+    {
+      "code": "61",
+      "label": "Services extérieurs.",
+      "class": 6
+    },
+    {
+      "code": "62",
+      "label": "Autres services extérieurs.",
+      "class": 6
+    },
+    {
+      "code": "63",
+      "label": "Charges divers ordinaires.",
+      "class": 6
+    },
+    {
+      "code": "64",
+      "label": "Charges de personnel.",
+      "class": 6
+    },
+    {
+      "code": "65",
+      "label": "Charges financières.",
+      "class": 6
+    },
+    {
+      "code": "66",
+      "label": "Impôts, taxes et versements assimilés.",
+      "class": 6
+    },
+    {
+      "code": "67",
+      "label": "Pertes extraordinaires.",
+      "class": 6
+    },
+    {
+      "code": "68",
+      "label": "Dotations aux amortissements et aux provisions.",
+      "class": 6
+    },
+    {
+      "code": "69",
+      "label": "Impôts sur les bénéfices. Classe 6 : Comptes de charges",
+      "class": 6
+    },
+    {
+      "code": "70",
+      "label": "Ventes de produits fabriqués, prestations de services, marchandises (A ventiler en ventes aux tiers et ventes aux filiales et entreprises associées, en ventes en dinars et ventes en devises).",
+      "class": 7
+    },
+    {
+      "code": "71",
+      "label": "Production stockée (ou déstockage).",
+      "class": 7
+    },
+    {
+      "code": "72",
+      "label": "Production immobilisée.",
+      "class": 7
+    },
+    {
+      "code": "73",
+      "label": "Produits divers ordinaires.",
+      "class": 7
+    },
+    {
+      "code": "74",
+      "label": "Subventions d'exploitation et d'équilibre.",
+      "class": 7
+    },
+    {
+      "code": "75",
+      "label": "Produits financiers.",
+      "class": 7
+    },
+    {
+      "code": "77",
+      "label": "Gains extraordinaires.",
+      "class": 7
+    },
+    {
+      "code": "78",
+      "label": "Reprises sur amortissements et provisions.",
+      "class": 7
+    },
+    {
+      "code": "79",
+      "label": "Transferts de charges. (A ventiler en fonction des comptes où ont été imputées les charges à transférer).",
+      "class": 7
+    },
+    {
+      "code": "101",
+      "label": "Capital social.",
+      "class": 1
+    },
+    {
+      "code": "105",
+      "label": "Fonds de dotation.",
+      "class": 1
+    },
+    {
+      "code": "108",
+      "label": "Compte de l'exploitant.",
+      "class": 1
+    },
+    {
+      "code": "109",
+      "label": "Actionnaires, capital souscrit - non appelé.",
+      "class": 1
+    },
+    {
+      "code": "111",
+      "label": "Réserve légale.",
+      "class": 1
+    },
+    {
+      "code": "112",
+      "label": "Réserves statutaires.",
+      "class": 1
+    },
+    {
+      "code": "117",
+      "label": "Primes liées au capital.",
+      "class": 1
+    },
+    {
+      "code": "118",
+      "label": "Autres réserves.",
+      "class": 1
+    },
+    {
+      "code": "119",
+      "label": "Avoirs des actionnaires. i[i][1]",
+      "class": 1
+    },
+    {
+      "code": "121",
+      "label": "Résultats reportés.",
+      "class": 1
+    },
+    {
+      "code": "128",
+      "label": "Modifications comptables affectant les résultats reportés.",
+      "class": 1
+    },
+    {
+      "code": "131",
+      "label": "Résultat bénéficiaire.",
+      "class": 1
+    },
+    {
+      "code": "135",
+      "label": "Résultat déficitaire.",
+      "class": 1
+    },
+    {
+      "code": "141",
+      "label": "Titres soumis à des réglementations particulières.",
+      "class": 1
+    },
+    {
+      "code": "142",
+      "label": "Réserves réglementées & réserves soumises à un régime fiscal particulier.",
+      "class": 1
+    },
+    {
+      "code": "143",
+      "label": "Amortissements dérogatoires.",
+      "class": 1
+    },
+    {
+      "code": "144",
+      "label": "Réserve spéciale de réévaluation.",
+      "class": 1
+    },
+    {
+      "code": "145",
+      "label": "Subventions d'investissement.",
+      "class": 1
+    },
+    {
+      "code": "147",
+      "label": "Compte du concédant.",
+      "class": 1
+    },
+    {
+      "code": "151",
+      "label": "Provisions pour risques.",
+      "class": 1
+    },
+    {
+      "code": "152",
+      "label": "Provisions pour charges à répartir sur plusieurs exercices.",
+      "class": 1
+    },
+    {
+      "code": "153",
+      "label": "Provisions pour retraites et obligations similaires.",
+      "class": 1
+    },
+    {
+      "code": "154",
+      "label": "Provisions d'origine réglementaire.",
+      "class": 1
+    },
+    {
+      "code": "155",
+      "label": "Provisions pour impôts.",
+      "class": 1
+    },
+    {
+      "code": "156",
+      "label": "Provisions pour renouvellement des immobilisations.",
+      "class": 1
+    },
+    {
+      "code": "157",
+      "label": "Provisions pour amortissement.",
+      "class": 1
+    },
+    {
+      "code": "158",
+      "label": "Autres provisions pour charges.",
+      "class": 1
+    },
+    {
+      "code": "161",
+      "label": "Emprunts obligataires (assorties de sûretés).",
+      "class": 1
+    },
+    {
+      "code": "162",
+      "label": "Emprunts auprès des établissements financiers (assorties de sûretés).",
+      "class": 1
+    },
+    {
+      "code": "163",
+      "label": "Emprunts auprès d'autres établissements financiers (assorties de sûretés).",
+      "class": 1
+    },
+    {
+      "code": "164",
+      "label": "Emprunts et dettes assorties de conditions particulières.",
+      "class": 1
+    },
+    {
+      "code": "165",
+      "label": "Emprunts non assorties de sûretés (à subdiviser selon l'ordre des comptes des emprunts).",
+      "class": 1
+    },
+    {
+      "code": "166",
+      "label": "Dettes rattachées à des participations.",
+      "class": 1
+    },
+    {
+      "code": "167",
+      "label": "Dépôts & cautionnements reçus.",
+      "class": 1
+    },
+    {
+      "code": "168",
+      "label": "Autres emprunts et dettes.",
+      "class": 1
+    },
+    {
+      "code": "171",
+      "label": "Comptes des liaison des établissements.",
+      "class": 1
+    },
+    {
+      "code": "176",
+      "label": "Biens & prestations de services échangés entre établissements (charges).",
+      "class": 1
+    },
+    {
+      "code": "177",
+      "label": "Biens & prestations de services échangés entre établissements (produits).",
+      "class": 1
+    },
+    {
+      "code": "185",
+      "label": "Écarts de conversion.",
+      "class": 1
+    },
+    {
+      "code": "188",
+      "label": "Autres. 35 Liste des comptes Classe 2 Comptes d'actifs non courants",
+      "class": 1
+    },
+    {
+      "code": "211",
+      "label": "Investissements de recherche & de développement.",
+      "class": 2
+    },
+    {
+      "code": "212",
+      "label": "Concessions de marques, brevets, licences, marques, procédés & valeurs similaires.",
+      "class": 2
+    },
+    {
+      "code": "213",
+      "label": "Logiciels.",
+      "class": 2
+    },
+    {
+      "code": "214",
+      "label": "Fonds commercial.",
+      "class": 2
+    },
+    {
+      "code": "216",
+      "label": "Droit au bail.",
+      "class": 2
+    },
+    {
+      "code": "218",
+      "label": "Autres immobilisations incorporelles.",
+      "class": 2
+    },
+    {
+      "code": "221",
+      "label": "Terrains.",
+      "class": 2
+    },
+    {
+      "code": "222",
+      "label": "Constructions.",
+      "class": 2
+    },
+    {
+      "code": "223",
+      "label": "Installations techniques, matériel et outillage industriels.",
+      "class": 2
+    },
+    {
+      "code": "224",
+      "label": "Matériel de transport",
+      "class": 2
+    },
+    {
+      "code": "228",
+      "label": "Autres immobilisations corporelles.",
+      "class": 2
+    },
+    {
+      "code": "231",
+      "label": "Immobilisations incorporelles en cours.",
+      "class": 2
+    },
+    {
+      "code": "232",
+      "label": "Immobilisations corporelles en cours.",
+      "class": 2
+    },
+    {
+      "code": "237",
+      "label": "Avances & acomptes versés sur immobilisations incorporelles.",
+      "class": 2
+    },
+    {
+      "code": "238",
+      "label": "Avances & acomptes versés sur commandes d'immobilisations corporelles.",
+      "class": 2
+    },
+    {
+      "code": "251",
+      "label": "Titres de participation.",
+      "class": 2
+    },
+    {
+      "code": "256",
+      "label": "Autres formes de participation.",
+      "class": 2
+    },
+    {
+      "code": "257",
+      "label": "Créances rattachées à des participations.",
+      "class": 2
+    },
+    {
+      "code": "258",
+      "label": "Créances rattachées à des sociétés en participation.",
+      "class": 2
+    },
+    {
+      "code": "259",
+      "label": "Versements restant à effectuer sur titres de participation non libérés.",
+      "class": 2
+    },
+    {
+      "code": "261",
+      "label": "Titres immobilisés (droit de propriété).",
+      "class": 2
+    },
+    {
+      "code": "262",
+      "label": "Titres immobilisés (droit de créance).",
+      "class": 2
+    },
+    {
+      "code": "264",
+      "label": "Prêts.",
+      "class": 2
+    },
+    {
+      "code": "265",
+      "label": "Dépôts et cautionnements versés.",
+      "class": 2
+    },
+    {
+      "code": "266",
+      "label": "Autres créances immobilisées.",
+      "class": 2
+    },
+    {
+      "code": "269",
+      "label": "Versements restant à effectuer sur titres immobilisés non libérés.",
+      "class": 2
+    },
+    {
+      "code": "271",
+      "label": "Frais préliminaires.",
+      "class": 2
+    },
+    {
+      "code": "272",
+      "label": "Charges à répartir.",
+      "class": 2
+    },
+    {
+      "code": "273",
+      "label": "Frais d'émission et primes de remboursement des emprunts.",
+      "class": 2
+    },
+    {
+      "code": "275",
+      "label": "Écarts de conversion.",
+      "class": 2
+    },
+    {
+      "code": "278",
+      "label": "Autres.",
+      "class": 2
+    },
+    {
+      "code": "281",
+      "label": "Amortissements des immobilisations incorporelles (même ventilation que celle du compte 21).",
+      "class": 2
+    },
+    {
+      "code": "282",
+      "label": "Amortissements des immobilisations corporelles (même ventilation que celle du compte 22).",
+      "class": 2
+    },
+    {
+      "code": "284",
+      "label": "Amortissements des immobilisations à statut juridique particulier.",
+      "class": 2
+    },
+    {
+      "code": "291",
+      "label": "Provisions pour dépréciation des immobilisations incorporelles (même ventilation que celle du compte 21).",
+      "class": 2
+    },
+    {
+      "code": "292",
+      "label": "Provisions pour dépréciation des immobilisations corporelles (même ventilation que celle du compte 22).",
+      "class": 2
+    },
+    {
+      "code": "293",
+      "label": "Provisions pour dépréciation des immobilisations en cours (même ventilation que celle du compte 23).",
+      "class": 2
+    },
+    {
+      "code": "294",
+      "label": "Provisions pour dépréciation des immobilisations à statut juridique particulier.",
+      "class": 2
+    },
+    {
+      "code": "295",
+      "label": "Provisions pour dépréciation des participations et des créances liées à des participations (même ventilation que celle du compte 25).",
+      "class": 2
+    },
+    {
+      "code": "296",
+      "label": "Provisions pour dépréciation des autres immobilisations financières (même ventilation que celle du compte 26). Liste des comptes Classe 3 Comptes de stocks",
+      "class": 2
+    },
+    {
+      "code": "311",
+      "label": "Matières premières.",
+      "class": 3
+    },
+    {
+      "code": "313",
+      "label": "Fournitures.",
+      "class": 3
+    },
+    {
+      "code": "317",
+      "label": "Autres.",
+      "class": 3
+    },
+    {
+      "code": "321",
+      "label": "Matières consommables.",
+      "class": 3
+    },
+    {
+      "code": "322",
+      "label": "Fournitures consommables.",
+      "class": 3
+    },
+    {
+      "code": "326",
+      "label": "Emballages.",
+      "class": 3
+    },
+    {
+      "code": "327",
+      "label": "Autres.",
+      "class": 3
+    },
+    {
+      "code": "331",
+      "label": "Produits en cours.",
+      "class": 3
+    },
+    {
+      "code": "335",
+      "label": "Travaux en cours.",
+      "class": 3
+    },
+    {
+      "code": "341",
+      "label": "Études en cours.",
+      "class": 3
+    },
+    {
+      "code": "345",
+      "label": "Prestations de services en cours.",
+      "class": 3
+    },
+    {
+      "code": "351",
+      "label": "Produits intermédiaires.",
+      "class": 3
+    },
+    {
+      "code": "355",
+      "label": "Produits finis.",
+      "class": 3
+    },
+    {
+      "code": "357",
+      "label": "Produits résiduels.",
+      "class": 3
+    },
+    {
+      "code": "401",
+      "label": "Fournisseurs d'exploitation.",
+      "class": 4
+    },
+    {
+      "code": "403",
+      "label": "Fournisseurs d'exploitation - effets à payer.",
+      "class": 4
+    },
+    {
+      "code": "404",
+      "label": "Fournisseurs d'immobilisations.",
+      "class": 4
+    },
+    {
+      "code": "405",
+      "label": "Fournisseurs d'immobilisations - effets à payer.",
+      "class": 4
+    },
+    {
+      "code": "408",
+      "label": "Fournisseurs - factures non parvenues.",
+      "class": 4
+    },
+    {
+      "code": "409",
+      "label": "Fournisseurs débiteurs.",
+      "class": 4
+    },
+    {
+      "code": "411",
+      "label": "Clients.",
+      "class": 4
+    },
+    {
+      "code": "413",
+      "label": "Clients - effets à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "416",
+      "label": "Clients douteux ou litigieux.",
+      "class": 4
+    },
+    {
+      "code": "417",
+      "label": "Créances sur travaux non encore facturables.",
+      "class": 4
+    },
+    {
+      "code": "418",
+      "label": "Clients - produits non encore facturés (produits à recevoir).",
+      "class": 4
+    },
+    {
+      "code": "419",
+      "label": "Clients créditeurs.",
+      "class": 4
+    },
+    {
+      "code": "421",
+      "label": "Personnel - avances et acomptes.",
+      "class": 4
+    },
+    {
+      "code": "422",
+      "label": "Comités d'entreprises et autres organes représentatifs du personnel.",
+      "class": 4
+    },
+    {
+      "code": "423",
+      "label": "Personnel, œuvres sociales.",
+      "class": 4
+    },
+    {
+      "code": "425",
+      "label": "Personnel - rémunérations dues.",
+      "class": 4
+    },
+    {
+      "code": "426",
+      "label": "Personnel - dépôts.",
+      "class": 4
+    },
+    {
+      "code": "427",
+      "label": "Personnel - oppositions.",
+      "class": 4
+    },
+    {
+      "code": "428",
+      "label": "Personnel - charges à payer & produits à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "431",
+      "label": "Etat - subventions à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "432",
+      "label": "Etat, impôts et taxes retenus à la source.",
+      "class": 4
+    },
+    {
+      "code": "433",
+      "label": "Opérations particulières avec l'Etat, les collectivités publiques, les organismes internationaux.",
+      "class": 4
+    },
+    {
+      "code": "434",
+      "label": "Etat - impôts sur les bénéfices.",
+      "class": 4
+    },
+    {
+      "code": "435",
+      "label": "Obligations cautionnées.",
+      "class": 4
+    },
+    {
+      "code": "436",
+      "label": "Etat - taxes sur le chiffre d'affaires.",
+      "class": 4
+    },
+    {
+      "code": "437",
+      "label": "Autres impôts, taxes et versements assimilés.",
+      "class": 4
+    },
+    {
+      "code": "438",
+      "label": "Etat - charges à payer et produits à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "441",
+      "label": "Groupe.",
+      "class": 4
+    },
+    {
+      "code": "442",
+      "label": "Associés - comptes courants.",
+      "class": 4
+    },
+    {
+      "code": "446",
+      "label": "Associés - opérations sur le capital.",
+      "class": 4
+    },
+    {
+      "code": "447",
+      "label": "Associés - dividendes à payer.",
+      "class": 4
+    },
+    {
+      "code": "448",
+      "label": "Associés - opérations faites en commun.",
+      "class": 4
+    },
+    {
+      "code": "452",
+      "label": "Créances sur cessions d'immobilisations.",
+      "class": 4
+    },
+    {
+      "code": "453",
+      "label": "Sécurité sociale et autres organismes sociaux.",
+      "class": 4
+    },
+    {
+      "code": "454",
+      "label": "Dettes sur acquisitions de valeurs mobilières de placement.",
+      "class": 4
+    },
+    {
+      "code": "455",
+      "label": "Créances sur cessions de valeurs mobilières de placement.",
+      "class": 4
+    },
+    {
+      "code": "457",
+      "label": "Autres comptes débiteurs ou créditeurs.",
+      "class": 4
+    },
+    {
+      "code": "458",
+      "label": "Diverses charges à payer et produits à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "461",
+      "label": "Compte d'attente.",
+      "class": 4
+    },
+    {
+      "code": "465",
+      "label": "Différence de conversion sur éléments courants.",
+      "class": 4
+    },
+    {
+      "code": "468",
+      "label": "Autres comptes transitoires.",
+      "class": 4
+    },
+    {
+      "code": "471",
+      "label": "Charges constatées d'avance.",
+      "class": 4
+    },
+    {
+      "code": "472",
+      "label": "Produits constatés d'avance.",
+      "class": 4
+    },
+    {
+      "code": "478",
+      "label": "Comptes de répartition périodique de charges et produits.",
+      "class": 4
+    },
+    {
+      "code": "491",
+      "label": "Provisions pour dépréciation des comptes clients.",
+      "class": 4
+    },
+    {
+      "code": "494",
+      "label": "Provisions pour dépréciation des comptes de groupe et associés.",
+      "class": 4
+    },
+    {
+      "code": "495",
+      "label": "Provisions pour dépréciation des comptes de débiteurs divers.",
+      "class": 4
+    },
+    {
+      "code": "501",
+      "label": "Emprunts courants liés au cycle d'exploitation.",
+      "class": 5
+    },
+    {
+      "code": "505",
+      "label": "Échéances à moins d'un an sur emprunts non courants.",
+      "class": 5
+    },
+    {
+      "code": "506",
+      "label": "Concours bancaires courants.",
+      "class": 5
+    },
+    {
+      "code": "507",
+      "label": "Emprunts échus et impayés.",
+      "class": 5
+    },
+    {
+      "code": "508",
+      "label": "Intérêts courus (à subdiviser selon la même ventilation que le compte 50).",
+      "class": 5
+    },
+    {
+      "code": "511",
+      "label": "Prêts courants liés au cycle d'exploitation.",
+      "class": 5
+    },
+    {
+      "code": "516",
+      "label": "Échéances à moins d'un an sur prêts non courants.",
+      "class": 5
+    },
+    {
+      "code": "517",
+      "label": "Échéances à moins d'un an sur autres créances financières.",
+      "class": 5
+    },
+    {
+      "code": "518",
+      "label": "Intérêts courus.",
+      "class": 5
+    },
+    {
+      "code": "523",
+      "label": "Actions.",
+      "class": 5
+    },
+    {
+      "code": "524",
+      "label": "Autres titres conférant un droit de propriété.",
+      "class": 5
+    },
+    {
+      "code": "525",
+      "label": "Obligations et bons émis par la société et rachetés par elle.",
+      "class": 5
+    },
+    {
+      "code": "526",
+      "label": "Obligations.",
+      "class": 5
+    },
+    {
+      "code": "527",
+      "label": "Bons du trésor et bons de caisse à court terme.",
+      "class": 5
+    },
+    {
+      "code": "528",
+      "label": "Autres placements courants et créances assimilées.",
+      "class": 5
+    },
+    {
+      "code": "529",
+      "label": "Versements restant à effectuer sur valeurs mobilières de placement non libérées.",
+      "class": 5
+    },
+    {
+      "code": "531",
+      "label": "Valeurs à l'encaissement.",
+      "class": 5
+    },
+    {
+      "code": "532",
+      "label": "Banques.",
+      "class": 5
+    },
+    {
+      "code": "534",
+      "label": "C.C.P.",
+      "class": 5
+    },
+    {
+      "code": "535",
+      "label": "Comptes au trésor.",
+      "class": 5
+    },
+    {
+      "code": "537",
+      "label": "Autres organismes financiers.",
+      "class": 5
+    },
+    {
+      "code": "541",
+      "label": "Caisse siège social.",
+      "class": 5
+    },
+    {
+      "code": "542",
+      "label": "Caisses succursales.",
+      "class": 5
+    },
+    {
+      "code": "601",
+      "label": "Achats stockés - Matières premières et fournitures liées.",
+      "class": 6
+    },
+    {
+      "code": "602",
+      "label": "Achats stockés - Autres approvisionnements.",
+      "class": 6
+    },
+    {
+      "code": "603",
+      "label": "Variation des stocks (approvisionnements et marchandises).",
+      "class": 6
+    },
+    {
+      "code": "604",
+      "label": "Achats d’études et de prestations de services (y compris achat de sous-traitance de production).",
+      "class": 6
+    },
+    {
+      "code": "605",
+      "label": "Achats de matériel, équipements et travaux.",
+      "class": 6
+    },
+    {
+      "code": "606",
+      "label": "Achats non stockés de matières et fournitures.",
+      "class": 6
+    },
+    {
+      "code": "607",
+      "label": "Achats de marchandises.",
+      "class": 6
+    },
+    {
+      "code": "608",
+      "label": "Achats liés à une modification comptable à prendre en compte dans le résultat de l'exercice ou à une activité abandonnée.",
+      "class": 6
+    },
+    {
+      "code": "609",
+      "label": "Rabais, remises et ristournes obtenus sur achats.",
+      "class": 6
+    },
+    {
+      "code": "611",
+      "label": "Sous-traitance générale.",
+      "class": 6
+    },
+    {
+      "code": "612",
+      "label": "Redevances pour utilisation d'immobilisations concédées.",
+      "class": 6
+    },
+    {
+      "code": "613",
+      "label": "Locations (y compris malis sur emballages).",
+      "class": 6
+    },
+    {
+      "code": "614",
+      "label": "Charges locatives et de copropriété.",
+      "class": 6
+    },
+    {
+      "code": "615",
+      "label": "Entretien et réparations.",
+      "class": 6
+    },
+    {
+      "code": "616",
+      "label": "Primes d'assurances.",
+      "class": 6
+    },
+    {
+      "code": "617",
+      "label": "Études, recherches et divers services extérieurs.",
+      "class": 6
+    },
+    {
+      "code": "618",
+      "label": "Autres charges liées à une modification comptable à prendre en compte dans le résultat de l'exercice ou à une activité abandonnée.",
+      "class": 6
+    },
+    {
+      "code": "619",
+      "label": "Rabais, remises et ristournes obtenus sur services extérieurs.",
+      "class": 6
+    },
+    {
+      "code": "621",
+      "label": "Personnel extérieur à l'entreprise.",
+      "class": 6
+    },
+    {
+      "code": "622",
+      "label": "Rémunération d'intermédiaires et honoraires.",
+      "class": 6
+    },
+    {
+      "code": "623",
+      "label": "Publicité, publications, relations publiques.",
+      "class": 6
+    },
+    {
+      "code": "624",
+      "label": "Transports de biens et transports collectifs du personnel.",
+      "class": 6
+    },
+    {
+      "code": "625",
+      "label": "Déplacements, missions et réceptions.",
+      "class": 6
+    },
+    {
+      "code": "626",
+      "label": "Frais postaux et frais de télécommunications.",
+      "class": 6
+    },
+    {
+      "code": "627",
+      "label": "Services bancaires et assimilés.",
+      "class": 6
+    },
+    {
+      "code": "628",
+      "label": "Autres services extérieurs liés à une modification comptable à prendre en compte dans le résultat de l'exercice ou à une activité abandonnée.",
+      "class": 6
+    },
+    {
+      "code": "629",
+      "label": "Rabais, remises et ristournes obtenus sur autres services extérieurs.",
+      "class": 6
+    },
+    {
+      "code": "631",
+      "label": "Redevances pour concessions de marques, brevets, licences, procédés, droits et valeurs similaires.",
+      "class": 6
+    },
+    {
+      "code": "633",
+      "label": "Jetons de présence.",
+      "class": 6
+    },
+    {
+      "code": "634",
+      "label": "Pertes sur créances irrécouvrables.",
+      "class": 6
+    },
+    {
+      "code": "635",
+      "label": "Quotes-parts de résultat sur opérations faites en commun.",
+      "class": 6
+    },
+    {
+      "code": "636",
+      "label": "Charges nettes sur cessions d'immobilisations et autres pertes sur éléments non récurrents ou exceptionnels.",
+      "class": 6
+    },
+    {
+      "code": "637",
+      "label": "Réduction de valeur.",
+      "class": 6
+    },
+    {
+      "code": "638",
+      "label": "Charges divers ordinaires liés à une modification comptable à prendre en compte dans le résultat de l'exercice ou à une activité abandonnée.",
+      "class": 6
+    },
+    {
+      "code": "640",
+      "label": "Salaires et compléments de salaires.",
+      "class": 6
+    },
+    {
+      "code": "642",
+      "label": "Appointements et compléments d'appointements.",
+      "class": 6
+    },
+    {
+      "code": "643",
+      "label": "Indemnités représentatives de frais.",
+      "class": 6
+    },
+    {
+      "code": "644",
+      "label": "Commissions au personnel.",
+      "class": 6
+    },
+    {
+      "code": "645",
+      "label": "Rémunérations des administrateurs, gérants et associés.",
+      "class": 6
+    },
+    {
+      "code": "646",
+      "label": "Charges connexes aux salaires, appointements, commissions et rémunérations.",
+      "class": 6
+    },
+    {
+      "code": "647",
+      "label": "Charges sociales légales.",
+      "class": 6
+    },
+    {
+      "code": "648",
+      "label": "Charges de personnel liées à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 6
+    },
+    {
+      "code": "649",
+      "label": "Autres charges de personnelles et autres charges sociales.",
+      "class": 6
+    },
+    {
+      "code": "651",
+      "label": "Charges d'intérêts.",
+      "class": 6
+    },
+    {
+      "code": "653",
+      "label": "Pertes sur créances liées à des participations.",
+      "class": 6
+    },
+    {
+      "code": "654",
+      "label": "Escomptes accordés.",
+      "class": 6
+    },
+    {
+      "code": "655",
+      "label": "Pertes de change.",
+      "class": 6
+    },
+    {
+      "code": "656",
+      "label": "Charges nettes sur cessions de valeurs mobilières.",
+      "class": 6
+    },
+    {
+      "code": "657",
+      "label": "Autres charges financières.",
+      "class": 6
+    },
+    {
+      "code": "658",
+      "label": "Charges financières liées à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 6
+    },
+    {
+      "code": "661",
+      "label": "Impôts, taxes et versements assimilés sur rémunérations.",
+      "class": 6
+    },
+    {
+      "code": "665",
+      "label": "Autres impôts, taxes et versements assimilés.",
+      "class": 6
+    },
+    {
+      "code": "668",
+      "label": "Impôts et taxes liés à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 6
+    },
+    {
+      "code": "681",
+      "label": "Dotations aux amortissements et aux provisions - charges ordinaires (autres que financières).",
+      "class": 6
+    },
+    {
+      "code": "686",
+      "label": "Dotations aux amortissements et aux provisions - charges financières.",
+      "class": 6
+    },
+    {
+      "code": "691",
+      "label": "Impôts sur les bénéfices calculés sur le résultat des activités ordinaires.",
+      "class": 6
+    },
+    {
+      "code": "695",
+      "label": "Autres impôts sur les bénéfices (régimes particuliers).",
+      "class": 6
+    },
+    {
+      "code": "697",
+      "label": "Impôts sur les bénéfices calculés sur les éléments extraordinaires. Liste des comptes Classe 7 Comptes de produits",
+      "class": 6
+    },
+    {
+      "code": "701",
+      "label": "Ventes de produits finis.",
+      "class": 7
+    },
+    {
+      "code": "702",
+      "label": "Ventes de produits intermédiaires.",
+      "class": 7
+    },
+    {
+      "code": "703",
+      "label": "Ventes de produits résiduels.",
+      "class": 7
+    },
+    {
+      "code": "704",
+      "label": "Travaux.",
+      "class": 7
+    },
+    {
+      "code": "705",
+      "label": "Études et prestations de services.",
+      "class": 7
+    },
+    {
+      "code": "706",
+      "label": "Produits des activités annexes.",
+      "class": 7
+    },
+    {
+      "code": "707",
+      "label": "Ventes de marchandises.",
+      "class": 7
+    },
+    {
+      "code": "708",
+      "label": "Ventes liées à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 7
+    },
+    {
+      "code": "709",
+      "label": "Rabais, remises et ristournes accordés par l'entreprise.",
+      "class": 7
+    },
+    {
+      "code": "713",
+      "label": "Variation des stocks (en-cours de production, produits).",
+      "class": 7
+    },
+    {
+      "code": "721",
+      "label": "Immobilisations incorporelles.",
+      "class": 7
+    },
+    {
+      "code": "722",
+      "label": "Immobilisations corporelles.",
+      "class": 7
+    },
+    {
+      "code": "728",
+      "label": "Production immobilisée liée à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 7
+    },
+    {
+      "code": "731",
+      "label": "Redevances pour concessions, brevets, licences, marques, procédés, droits et valeurs similaires.",
+      "class": 7
+    },
+    {
+      "code": "732",
+      "label": "Revenus des immeubles non affectés aux activités professionnelles.",
+      "class": 7
+    },
+    {
+      "code": "733",
+      "label": "Jetons de présence et rémunérations d'administrateurs, gérants.",
+      "class": 7
+    },
+    {
+      "code": "734",
+      "label": "Ristournes perçues des coopératives (provenant des excédents).",
+      "class": 7
+    },
+    {
+      "code": "735",
+      "label": "Quotes-parts de résultat sur opérations faites en commun.",
+      "class": 7
+    },
+    {
+      "code": "736",
+      "label": "Produits nets sur cessions d'immobilisations et autres gains sur éléments non récurrents ou exceptionnels.",
+      "class": 7
+    },
+    {
+      "code": "738",
+      "label": "Produits divers ordinaires liés à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 7
+    },
+    {
+      "code": "739",
+      "label": "Quotes-parts des subventions d'investissement inscrites au résultat de l'exercice.",
+      "class": 7
+    },
+    {
+      "code": "741",
+      "label": "Subventions d'exploitation.",
+      "class": 7
+    },
+    {
+      "code": "745",
+      "label": "Subventions d'équilibre.",
+      "class": 7
+    },
+    {
+      "code": "748",
+      "label": "Subventions liées à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 7
+    },
+    {
+      "code": "751",
+      "label": "Produits des participations.",
+      "class": 7
+    },
+    {
+      "code": "752",
+      "label": "Produits des autres immobilisations financières.",
+      "class": 7
+    },
+    {
+      "code": "753",
+      "label": "Revenus des autres créances.",
+      "class": 7
+    },
+    {
+      "code": "754",
+      "label": "Revenus des valeurs mobilières de placement.",
+      "class": 7
+    },
+    {
+      "code": "755",
+      "label": "Escomptes obtenus.",
+      "class": 7
+    },
+    {
+      "code": "756",
+      "label": "Gains de change.",
+      "class": 7
+    },
+    {
+      "code": "757",
+      "label": "Produits nets sur cessions de valeurs mobilières.",
+      "class": 7
+    },
+    {
+      "code": "758",
+      "label": "Produits financiers liés à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 7
+    },
+    {
+      "code": "781",
+      "label": "Reprises sur amortissements et provisions (à inscrire dans les produits ordinaires).",
+      "class": 7
+    },
+    {
+      "code": "786",
+      "label": "Reprises sur provisions (à inscrire dans les produits financiers).",
+      "class": 7
+    },
+    {
+      "code": "1011",
+      "label": "Capital souscrit - non appelé.",
+      "class": 1
+    },
+    {
+      "code": "1012",
+      "label": "Capital souscrit - appelé, non versé.",
+      "class": 1
+    },
+    {
+      "code": "1013",
+      "label": "Capital souscrit - appelé, versé.",
+      "class": 1
+    },
+    {
+      "code": "1018",
+      "label": "Capital souscrit soumis à une réglementation particulière.",
+      "class": 1
+    },
+    {
+      "code": "1171",
+      "label": "Primes d'émission.",
+      "class": 1
+    },
+    {
+      "code": "1172",
+      "label": "Primes de fusion.",
+      "class": 1
+    },
+    {
+      "code": "1173",
+      "label": "Primes d'apport.",
+      "class": 1
+    },
+    {
+      "code": "1174",
+      "label": "Primes de conversion d'obligation.",
+      "class": 1
+    },
+    {
+      "code": "1178",
+      "label": "Autres compléments d'apport.",
+      "class": 1
+    },
+    {
+      "code": "1181",
+      "label": "Réserves pour fonds social.",
+      "class": 1
+    },
+    {
+      "code": "1421",
+      "label": "Réserves indisponibles.",
+      "class": 1
+    },
+    {
+      "code": "1451",
+      "label": "Subventions d'investissement.",
+      "class": 1
+    },
+    {
+      "code": "1458",
+      "label": "Autres subventions d'investissement.",
+      "class": 1
+    },
+    {
+      "code": "1459",
+      "label": "Subventions d'investissement inscrites aux comptes de résultat.",
+      "class": 1
+    },
+    {
+      "code": "1511",
+      "label": "Provisions pour litiges.",
+      "class": 1
+    },
+    {
+      "code": "1512",
+      "label": "Provisions pour garanties données aux clients.",
+      "class": 1
+    },
+    {
+      "code": "1513",
+      "label": "Provisions pour pertes sur marchés à achèvement futur.",
+      "class": 1
+    },
+    {
+      "code": "1514",
+      "label": "Provisions pour amendes & pénalités.",
+      "class": 1
+    },
+    {
+      "code": "1515",
+      "label": "Provisions pour pertes de change. ii[ii][2]",
+      "class": 1
+    },
+    {
+      "code": "1518",
+      "label": "Autres provisions pour risques.",
+      "class": 1
+    },
+    {
+      "code": "1522",
+      "label": "Provisions pour grosses réparations.",
+      "class": 1
+    },
+    {
+      "code": "1611",
+      "label": "Emprunts obligataires convertibles en actions.",
+      "class": 1
+    },
+    {
+      "code": "1618",
+      "label": "Autres emprunts obligataires.",
+      "class": 1
+    },
+    {
+      "code": "1621",
+      "label": "Emprunts bancaires.",
+      "class": 1
+    },
+    {
+      "code": "1626",
+      "label": "Refinancements acquis.",
+      "class": 1
+    },
+    {
+      "code": "1641",
+      "label": "Avances bloquées pour augmentation du capital.",
+      "class": 1
+    },
+    {
+      "code": "1642",
+      "label": "Avances reçues et comptes courants des associés bloqués.",
+      "class": 1
+    },
+    {
+      "code": "1644",
+      "label": "Avances conditionnées de l'Etat & organismes internationaux.",
+      "class": 1
+    },
+    {
+      "code": "1661",
+      "label": "Dettes rattachées à des participations (groupe).",
+      "class": 1
+    },
+    {
+      "code": "1662",
+      "label": "Dettes rattachées à des participations (hors groupe).",
+      "class": 1
+    },
+    {
+      "code": "1663",
+      "label": "Dettes rattachées à des sociétés en participation.",
+      "class": 1
+    },
+    {
+      "code": "1681",
+      "label": "Autres emprunts.",
+      "class": 1
+    },
+    {
+      "code": "1685",
+      "label": "Crédit fournisseurs d'immobilisations.",
+      "class": 1
+    },
+    {
+      "code": "1688",
+      "label": "Autres dettes non courantes.",
+      "class": 1
+    },
+    {
+      "code": "2000",
+      "label": "Nomenclature des comptes Liste des comptes Classe 1 Comptes de capitaux propres et passifs non courants",
+      "class": 2
+    },
+    {
+      "code": "2213",
+      "label": "Terrains nus.",
+      "class": 2
+    },
+    {
+      "code": "2214",
+      "label": "Terrains aménagés.",
+      "class": 2
+    },
+    {
+      "code": "2215",
+      "label": "Terrains bâtis.",
+      "class": 2
+    },
+    {
+      "code": "2216",
+      "label": "Agencements & aménagements des terrains.",
+      "class": 2
+    },
+    {
+      "code": "2221",
+      "label": "Bâtiments.",
+      "class": 2
+    },
+    {
+      "code": "2225",
+      "label": "Installations générales, agencements & aménagements des constructions.",
+      "class": 2
+    },
+    {
+      "code": "2226",
+      "label": "Ouvrages d'infrastructure.",
+      "class": 2
+    },
+    {
+      "code": "2227",
+      "label": "Constructions sur sol d'autrui.",
+      "class": 2
+    },
+    {
+      "code": "2231",
+      "label": "Installations techniques.",
+      "class": 2
+    },
+    {
+      "code": "2234",
+      "label": "Matériel industriel.",
+      "class": 2
+    },
+    {
+      "code": "2235",
+      "label": "Outillage industriel.",
+      "class": 2
+    },
+    {
+      "code": "2237",
+      "label": "Agencements & aménagements du matériel & outillage industriels.",
+      "class": 2
+    },
+    {
+      "code": "2241",
+      "label": "Matériel de transport de biens.",
+      "class": 2
+    },
+    {
+      "code": "2244",
+      "label": "Matériel de transport de personnes.",
+      "class": 2
+    },
+    {
+      "code": "2281",
+      "label": "Installations générales, agencements et aménagements divers.",
+      "class": 2
+    },
+    {
+      "code": "2282",
+      "label": "Équipement de bureau.",
+      "class": 2
+    },
+    {
+      "code": "2286",
+      "label": "Emballages récupérables identifiables.",
+      "class": 2
+    },
+    {
+      "code": "2511",
+      "label": "Actions.",
+      "class": 2
+    },
+    {
+      "code": "2518",
+      "label": "Autres titres.",
+      "class": 2
+    },
+    {
+      "code": "2571",
+      "label": "Créances rattachées à des participations (groupe).",
+      "class": 2
+    },
+    {
+      "code": "2574",
+      "label": "Créances rattachées à des participations (hors groupe).",
+      "class": 2
+    },
+    {
+      "code": "2575",
+      "label": "Versements représentatifs d'apports non capitalisés (appel de fonds).",
+      "class": 2
+    },
+    {
+      "code": "2576",
+      "label": "Avances consolidables.",
+      "class": 2
+    },
+    {
+      "code": "2577",
+      "label": "Autres créances rattachées à des participations.",
+      "class": 2
+    },
+    {
+      "code": "2611",
+      "label": "Actions.",
+      "class": 2
+    },
+    {
+      "code": "2618",
+      "label": "Autres titres.",
+      "class": 2
+    },
+    {
+      "code": "2621",
+      "label": "Obligations.",
+      "class": 2
+    },
+    {
+      "code": "2622",
+      "label": "Bons.",
+      "class": 2
+    },
+    {
+      "code": "2641",
+      "label": "Prêts participatifs.",
+      "class": 2
+    },
+    {
+      "code": "2642",
+      "label": "Prêts aux associés.",
+      "class": 2
+    },
+    {
+      "code": "2643",
+      "label": "Prêts au personnel.",
+      "class": 2
+    },
+    {
+      "code": "2645",
+      "label": "Prêts assortis de sûretés (à subdiviser).",
+      "class": 2
+    },
+    {
+      "code": "2648",
+      "label": "Autres prêts.",
+      "class": 2
+    },
+    {
+      "code": "2651",
+      "label": "Dépôts.",
+      "class": 2
+    },
+    {
+      "code": "2655",
+      "label": "Cautionnements.",
+      "class": 2
+    },
+    {
+      "code": "2656",
+      "label": "Dépôts bancaires non courants.",
+      "class": 2
+    },
+    {
+      "code": "2658",
+      "label": "Autres.",
+      "class": 2
+    },
+    {
+      "code": "2661",
+      "label": "Créances immobilisées.",
+      "class": 2
+    },
+    {
+      "code": "2667",
+      "label": "Créances diverses.",
+      "class": 2
+    },
+    {
+      "code": "2668",
+      "label": "Autres créances non courantes.",
+      "class": 2
+    },
+    {
+      "code": "4011",
+      "label": "Fournisseurs - achats de biens ou de prestations de services.",
+      "class": 4
+    },
+    {
+      "code": "4017",
+      "label": "Fournisseurs - retenues de garantie.",
+      "class": 4
+    },
+    {
+      "code": "4041",
+      "label": "Fournisseurs - achats d'immobilisations.",
+      "class": 4
+    },
+    {
+      "code": "4047",
+      "label": "Fournisseurs d'immobilisations - retenues de garantie.",
+      "class": 4
+    },
+    {
+      "code": "4081",
+      "label": "Fournisseurs d'exploitation.",
+      "class": 4
+    },
+    {
+      "code": "4084",
+      "label": "Fournisseurs d'immobilisations.",
+      "class": 4
+    },
+    {
+      "code": "4088",
+      "label": "Fournisseurs - intérêts courus.",
+      "class": 4
+    },
+    {
+      "code": "4091",
+      "label": "Fournisseurs - avances et acomptes versés sur commandes.",
+      "class": 4
+    },
+    {
+      "code": "4096",
+      "label": "Fournisseurs - créances pour emballages et matériel à rendre.",
+      "class": 4
+    },
+    {
+      "code": "4097",
+      "label": "Fournisseurs - autres avoirs.",
+      "class": 4
+    },
+    {
+      "code": "4098",
+      "label": "Rabais, remises, ristournes à obtenir et autres avoirs non encore reçus.",
+      "class": 4
+    },
+    {
+      "code": "4111",
+      "label": "Clients - ventes de biens ou de prestations de services.",
+      "class": 4
+    },
+    {
+      "code": "4117",
+      "label": "Clients - retenues de garantie.",
+      "class": 4
+    },
+    {
+      "code": "4181",
+      "label": "Factures à établir.",
+      "class": 4
+    },
+    {
+      "code": "4188",
+      "label": "Intérêts courus.",
+      "class": 4
+    },
+    {
+      "code": "4191",
+      "label": "Clients - avances et acomptes reçus sur commandes.",
+      "class": 4
+    },
+    {
+      "code": "4196",
+      "label": "Clients - dettes pour emballages et matériel consignés.",
+      "class": 4
+    },
+    {
+      "code": "4197",
+      "label": "Clients - autres avoirs.",
+      "class": 4
+    },
+    {
+      "code": "4198",
+      "label": "Rabais, remises, ristournes à accorder et autres avoirs à établir.",
+      "class": 4
+    },
+    {
+      "code": "4282",
+      "label": "Dettes provisionnées pour congés à payer.",
+      "class": 4
+    },
+    {
+      "code": "4286",
+      "label": "Autres charges à payer.",
+      "class": 4
+    },
+    {
+      "code": "4287",
+      "label": "Produits à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "4341",
+      "label": "Retenue à la source.",
+      "class": 4
+    },
+    {
+      "code": "4342",
+      "label": "Acomptes provisionnels.",
+      "class": 4
+    },
+    {
+      "code": "4343",
+      "label": "Impôt à liquider.",
+      "class": 4
+    },
+    {
+      "code": "4349",
+      "label": "Impôts différés.",
+      "class": 4
+    },
+    {
+      "code": "4365",
+      "label": "Taxes sur le chiffre d'affaires à décaisser.",
+      "class": 4
+    },
+    {
+      "code": "4366",
+      "label": "Taxes sur le chiffre d'affaires déductibles.",
+      "class": 4
+    },
+    {
+      "code": "4367",
+      "label": "Taxes sur le chiffre d'affaires collectées par l'entreprise.",
+      "class": 4
+    },
+    {
+      "code": "4368",
+      "label": "Taxes sur le chiffre d'affaires à régulariser ou en attente.",
+      "class": 4
+    },
+    {
+      "code": "4382",
+      "label": "Charges fiscales sur congés à payer.",
+      "class": 4
+    },
+    {
+      "code": "4386",
+      "label": "Autres charges à payer.",
+      "class": 4
+    },
+    {
+      "code": "4387",
+      "label": "Produits à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "4411",
+      "label": "Créances et intérêts courus.",
+      "class": 4
+    },
+    {
+      "code": "4412",
+      "label": "Dettes et intérêts à payer.",
+      "class": 4
+    },
+    {
+      "code": "4421",
+      "label": "Principal.",
+      "class": 4
+    },
+    {
+      "code": "4428",
+      "label": "Intérêts courus.",
+      "class": 4
+    },
+    {
+      "code": "4481",
+      "label": "Opérations courantes.",
+      "class": 4
+    },
+    {
+      "code": "4488",
+      "label": "Intérêts courus.",
+      "class": 4
+    },
+    {
+      "code": "4531",
+      "label": "Organismes sociaux.",
+      "class": 4
+    },
+    {
+      "code": "4538",
+      "label": "Organismes sociaux - charges à payer et produits à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "4586",
+      "label": "Charges à payer.",
+      "class": 4
+    },
+    {
+      "code": "4587",
+      "label": "Produits à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "4651",
+      "label": "Différences de conversion actif.",
+      "class": 4
+    },
+    {
+      "code": "4652",
+      "label": "Différences de conversion passif.",
+      "class": 4
+    },
+    {
+      "code": "4786",
+      "label": "Charges.",
+      "class": 4
+    },
+    {
+      "code": "4787",
+      "label": "Produits.",
+      "class": 4
+    },
+    {
+      "code": "4941",
+      "label": "Comptes du groupe.",
+      "class": 4
+    },
+    {
+      "code": "4942",
+      "label": "Comptes courants des associés.",
+      "class": 4
+    },
+    {
+      "code": "4948",
+      "label": "Opérations faites en commun.",
+      "class": 4
+    },
+    {
+      "code": "4952",
+      "label": "Créances sur cession d'immobilisation.",
+      "class": 4
+    },
+    {
+      "code": "4955",
+      "label": "Créances sur cession des valeurs mobilières de placement.",
+      "class": 4
+    },
+    {
+      "code": "4957",
+      "label": "Autres comptes débiteurs. 42 Classe 5 : Comptes financiers",
+      "class": 4
+    },
+    {
+      "code": "5061",
+      "label": "Crédit de mobilisation de créances commerciales.",
+      "class": 5
+    },
+    {
+      "code": "5063",
+      "label": "Mobilisation de créances nées à l'étranger.",
+      "class": 5
+    },
+    {
+      "code": "5067",
+      "label": "Autres concours bancaires.",
+      "class": 5
+    },
+    {
+      "code": "5231",
+      "label": "Titres cotés.",
+      "class": 5
+    },
+    {
+      "code": "5235",
+      "label": "Titres non cotés.",
+      "class": 5
+    },
+    {
+      "code": "5261",
+      "label": "Titres cotés.",
+      "class": 5
+    },
+    {
+      "code": "5265",
+      "label": "Titres non cotés.",
+      "class": 5
+    },
+    {
+      "code": "5266",
+      "label": "Échéances à moins d'un an sur les obligations immobilisées.",
+      "class": 5
+    },
+    {
+      "code": "5281",
+      "label": "Autres valeurs mobilières.",
+      "class": 5
+    },
+    {
+      "code": "5288",
+      "label": "Intérêts courus sur obligations, bons et valeurs assimilées.",
+      "class": 5
+    },
+    {
+      "code": "5311",
+      "label": "Coupons échus à l'encaissement.",
+      "class": 5
+    },
+    {
+      "code": "5312",
+      "label": "Chèques à encaisser.",
+      "class": 5
+    },
+    {
+      "code": "5313",
+      "label": "Effets à l'encaissement.",
+      "class": 5
+    },
+    {
+      "code": "5314",
+      "label": "Effets à l'escompte. Liste des comptes Classe 5 Comptes financiers",
+      "class": 5
+    },
+    {
+      "code": "5321",
+      "label": "Comptes en dinars.",
+      "class": 5
+    },
+    {
+      "code": "5324",
+      "label": "Comptes en devises.",
+      "class": 5
+    },
+    {
+      "code": "5411",
+      "label": "Caisse en dinars.",
+      "class": 5
+    },
+    {
+      "code": "5414",
+      "label": "Caisse en devises.",
+      "class": 5
+    },
+    {
+      "code": "6021",
+      "label": "Matières consommables.",
+      "class": 6
+    },
+    {
+      "code": "6022",
+      "label": "Fournitures consommables.",
+      "class": 6
+    },
+    {
+      "code": "6026",
+      "label": "Emballages.",
+      "class": 6
+    },
+    {
+      "code": "6098",
+      "label": "Liés à une modification comptable à prendre en compte dans le résultat de l'exercice ou à une activité abandonnée.",
+      "class": 6
+    },
+    {
+      "code": "6241",
+      "label": "Transports sur achats.",
+      "class": 6
+    },
+    {
+      "code": "6242",
+      "label": "Transports sur ventes.",
+      "class": 6
+    },
+    {
+      "code": "6244",
+      "label": "Transports administratifs.",
+      "class": 6
+    },
+    {
+      "code": "6247",
+      "label": "Transports collectifs du personnel.",
+      "class": 6
+    },
+    {
+      "code": "6248",
+      "label": "Divers.",
+      "class": 6
+    },
+    {
+      "code": "6251",
+      "label": "Voyages et déplacements.",
+      "class": 6
+    },
+    {
+      "code": "6255",
+      "label": "Frais de déménagement.",
+      "class": 6
+    },
+    {
+      "code": "6256",
+      "label": "Missions.",
+      "class": 6
+    },
+    {
+      "code": "6257",
+      "label": "Réceptions.",
+      "class": 6
+    },
+    {
+      "code": "6271",
+      "label": "Frais sur titres (achats, vente, garde).",
+      "class": 6
+    },
+    {
+      "code": "6272",
+      "label": "Commissions et frais sur émission d'emprunts.",
+      "class": 6
+    },
+    {
+      "code": "6275",
+      "label": "Frais sur effets.",
+      "class": 6
+    },
+    {
+      "code": "6276",
+      "label": "Location de coffres.",
+      "class": 6
+    },
+    {
+      "code": "6278",
+      "label": "Autres frais et commissions sur prestations de services.",
+      "class": 6
+    },
+    {
+      "code": "6341",
+      "label": "Créances de l'exercice.",
+      "class": 6
+    },
+    {
+      "code": "6344",
+      "label": "Créances des exercices antérieurs.",
+      "class": 6
+    },
+    {
+      "code": "6351",
+      "label": "Quote-part de bénéfice transférée (comptabilité du gérant).",
+      "class": 6
+    },
+    {
+      "code": "6355",
+      "label": "Quote-part de perte supportée (comptabilité des associés non gérants).",
+      "class": 6
+    },
+    {
+      "code": "6400",
+      "label": "Salaires.",
+      "class": 6
+    },
+    {
+      "code": "6401",
+      "label": "Heures supplémentaires.",
+      "class": 6
+    },
+    {
+      "code": "6402",
+      "label": "Primes.",
+      "class": 6
+    },
+    {
+      "code": "6403",
+      "label": "Gratifications.",
+      "class": 6
+    },
+    {
+      "code": "6404",
+      "label": "Avantages en nature.",
+      "class": 6
+    },
+    {
+      "code": "6409",
+      "label": "Autres compléments de salaires.",
+      "class": 6
+    },
+    {
+      "code": "6420",
+      "label": "Appointements.",
+      "class": 6
+    },
+    {
+      "code": "6421",
+      "label": "Heures supplémentaires.",
+      "class": 6
+    },
+    {
+      "code": "6422",
+      "label": "Primes.",
+      "class": 6
+    },
+    {
+      "code": "6423",
+      "label": "Gratifications.",
+      "class": 6
+    },
+    {
+      "code": "6424",
+      "label": "Avantages en nature.",
+      "class": 6
+    },
+    {
+      "code": "6429",
+      "label": "Autres compléments d'appointements.",
+      "class": 6
+    },
+    {
+      "code": "6440",
+      "label": "Commissions sur achats.",
+      "class": 6
+    },
+    {
+      "code": "6441",
+      "label": "Commissions sur ventes.",
+      "class": 6
+    },
+    {
+      "code": "6460",
+      "label": "Charges connexes aux salaires.",
+      "class": 6
+    },
+    {
+      "code": "6462",
+      "label": "Charges connexes aux appointements.",
+      "class": 6
+    },
+    {
+      "code": "6464",
+      "label": "Charges connexes aux commissions.",
+      "class": 6
+    },
+    {
+      "code": "6465",
+      "label": "Charges connexes aux rémunérations des administrateurs et gérants.",
+      "class": 6
+    },
+    {
+      "code": "6470",
+      "label": "Cotisations de sécurité sociale sur salaires.",
+      "class": 6
+    },
+    {
+      "code": "6472",
+      "label": "Cotisations de sécurité sociale sur appointements.",
+      "class": 6
+    },
+    {
+      "code": "6474",
+      "label": "Cotisations de sécurité sociale sur commissions.",
+      "class": 6
+    },
+    {
+      "code": "6475",
+      "label": "Cotisations de sécurité sociale sur rémunérations des administrateurs et gérants.",
+      "class": 6
+    },
+    {
+      "code": "6476",
+      "label": "Prestations directes.",
+      "class": 6
+    },
+    {
+      "code": "6490",
+      "label": "Autres charges de personnel.",
+      "class": 6
+    },
+    {
+      "code": "6495",
+      "label": "Au très charges sociales.",
+      "class": 6
+    },
+    {
+      "code": "6511",
+      "label": "Intérêts des emprunts et dettes.",
+      "class": 6
+    },
+    {
+      "code": "6515",
+      "label": "Intérêts des comptes courants et des dépôts créditeurs.",
+      "class": 6
+    },
+    {
+      "code": "6516",
+      "label": "Intérêts bancaires et sur opérations de financement.",
+      "class": 6
+    },
+    {
+      "code": "6517",
+      "label": "Intérêts des obligations cautionnées.",
+      "class": 6
+    },
+    {
+      "code": "6518",
+      "label": "Intérêts des autres dettes (y compris les pénalités et intérêts de retard sur emprunts).",
+      "class": 6
+    },
+    {
+      "code": "6611",
+      "label": "TFP.",
+      "class": 6
+    },
+    {
+      "code": "6612",
+      "label": "FOPROLOS.",
+      "class": 6
+    },
+    {
+      "code": "6618",
+      "label": "Autres.",
+      "class": 6
+    },
+    {
+      "code": "6651",
+      "label": "Impôts et taxes divers (sauf impôts sur les bénéfices).",
+      "class": 6
+    },
+    {
+      "code": "6652",
+      "label": "Taxes sur le chiffre d'affaires non récupérables.",
+      "class": 6
+    },
+    {
+      "code": "6654",
+      "label": "Droits d'enregistrement et de timbre.",
+      "class": 6
+    },
+    {
+      "code": "6655",
+      "label": "Taxes sur les véhicules.",
+      "class": 6
+    },
+    {
+      "code": "6658",
+      "label": "Autres droits.",
+      "class": 6
+    },
+    {
+      "code": "6811",
+      "label": "Dotations aux amortissements des immobilisations incorporelles et corporelles.",
+      "class": 6
+    },
+    {
+      "code": "6812",
+      "label": "Dotations aux résorptions des charges reportées.",
+      "class": 6
+    },
+    {
+      "code": "6815",
+      "label": "Dotations aux provisions pour risques et charges d'exploitation.",
+      "class": 6
+    },
+    {
+      "code": "6816",
+      "label": "Dotations aux provisions pour dépréciation des immobilisations incorporelles et corporelles.",
+      "class": 6
+    },
+    {
+      "code": "6817",
+      "label": "Dotations aux provisions pour dépréciation des actifs courants (autres que les valeurs mobilières de placement et les équivalents de liquidités).",
+      "class": 6
+    },
+    {
+      "code": "6818",
+      "label": "Dotations aux amortissements et aux provisions liées à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 6
+    },
+    {
+      "code": "6861",
+      "label": "Dotations aux amortissements des primes de remboursement des obligations.",
+      "class": 6
+    },
+    {
+      "code": "6865",
+      "label": "Dotations aux provisions pour risques et charges financières.",
+      "class": 6
+    },
+    {
+      "code": "6866",
+      "label": "Dotations aux provisions pour dépréciation des éléments financiers.",
+      "class": 6
+    },
+    {
+      "code": "6868",
+      "label": "Dotations aux amortissements et aux provisions liées à une modification comptable inscrite dans le résultat de l'exercice ou à une activité abandonnée. (charges financières).",
+      "class": 6
+    },
+    {
+      "code": "7011",
+      "label": "Produits finis achevés.",
+      "class": 7
+    },
+    {
+      "code": "7012",
+      "label": "Produits finis non achevés (contrat de longue durée).",
+      "class": 7
+    },
+    {
+      "code": "7091",
+      "label": "Sur ventes de produits finis.",
+      "class": 7
+    },
+    {
+      "code": "7092",
+      "label": "Sur ventes de produits intermédiaires.",
+      "class": 7
+    },
+    {
+      "code": "7094",
+      "label": "Sur travaux.",
+      "class": 7
+    },
+    {
+      "code": "7095",
+      "label": "Sur études et prestations de services.",
+      "class": 7
+    },
+    {
+      "code": "7096",
+      "label": "Sur activités annexes.",
+      "class": 7
+    },
+    {
+      "code": "7097",
+      "label": "Sur ventes de marchandises.",
+      "class": 7
+    },
+    {
+      "code": "7098",
+      "label": "Sur ventes liées à une modification comptable à imputer au résultat de l'exercice ou à une activité abandonnée.",
+      "class": 7
+    },
+    {
+      "code": "7133",
+      "label": "Variations des en-cours de production de biens.",
+      "class": 7
+    },
+    {
+      "code": "7134",
+      "label": "Variation des en-cours de production de services.",
+      "class": 7
+    },
+    {
+      "code": "7135",
+      "label": "Variation des stocks de produits.",
+      "class": 7
+    },
+    {
+      "code": "7811",
+      "label": "Reprises sur amortissements des immobilisations incorporelles et corporelles.",
+      "class": 7
+    },
+    {
+      "code": "7815",
+      "label": "Reprises sur provisions pour risques et charges d'exploitation.",
+      "class": 7
+    },
+    {
+      "code": "7816",
+      "label": "Reprises sur provisions pour dépréciation des immobilisations incorporelles et corporelles.",
+      "class": 7
+    },
+    {
+      "code": "7817",
+      "label": "Reprises sur provisions pour dépréciation des actifs courants (autres que les valeurs mobilières de placement et les équivalents de liquidités).",
+      "class": 7
+    },
+    {
+      "code": "7818",
+      "label": "Reprises sur provisions liées à une modification comptable inscrite aux résultats ou à une activité abandonnée.",
+      "class": 7
+    },
+    {
+      "code": "7865",
+      "label": "Reprises sur provisions pour risque et charges financières.",
+      "class": 7
+    },
+    {
+      "code": "7866",
+      "label": "Reprises sur provisions pour dépréciation des éléments financiers.",
+      "class": 7
+    },
+    {
+      "code": "7868",
+      "label": "Reprises sur provisions (à inscrire dans les produits financiers) liées à une modification comptable inscrite aux résultats de ou à une activité abandonnée.",
+      "class": 7
+    },
+    {
+      "code": "10131",
+      "label": "Capital non amorti.",
+      "class": 1
+    },
+    {
+      "code": "10132",
+      "label": "Capital amorti.",
+      "class": 1
+    },
+    {
+      "code": "40971",
+      "label": "Fournisseurs d'exploitation.",
+      "class": 4
+    },
+    {
+      "code": "40974",
+      "label": "Fournisseurs d'immobilisations.",
+      "class": 4
+    },
+    {
+      "code": "43651",
+      "label": "TVA à payer.",
+      "class": 4
+    },
+    {
+      "code": "43658",
+      "label": "Autres taxes sur le chiffre d'affaires.",
+      "class": 4
+    },
+    {
+      "code": "43662",
+      "label": "TVA sur immobilisations.",
+      "class": 4
+    },
+    {
+      "code": "43663",
+      "label": "TVA transférée par d'autres entreprises.",
+      "class": 4
+    },
+    {
+      "code": "43666",
+      "label": "TVA sur autres biens et services.",
+      "class": 4
+    },
+    {
+      "code": "43667",
+      "label": "Crédit de TVA à reporter.",
+      "class": 4
+    },
+    {
+      "code": "43668",
+      "label": "Autres taxes sur le chiffre d'affaires.",
+      "class": 4
+    },
+    {
+      "code": "43671",
+      "label": "TVA collectée.",
+      "class": 4
+    },
+    {
+      "code": "43678",
+      "label": "Autres taxes sur le chiffre d'affaires.",
+      "class": 4
+    },
+    {
+      "code": "45311",
+      "label": "CNSS.",
+      "class": 4
+    },
+    {
+      "code": "45318",
+      "label": "Autres.",
+      "class": 4
+    },
+    {
+      "code": "45382",
+      "label": "Charges sociales sur congés à payer.",
+      "class": 4
+    },
+    {
+      "code": "45386",
+      "label": "Autres charges à payer.",
+      "class": 4
+    },
+    {
+      "code": "45387",
+      "label": "Produits à recevoir.",
+      "class": 4
+    },
+    {
+      "code": "64600",
+      "label": "Congés payés.",
+      "class": 6
+    },
+    {
+      "code": "64602",
+      "label": "Indemnités de préavis et de licenciements (gratification de fin de service).",
+      "class": 6
+    },
+    {
+      "code": "64604",
+      "label": "Supplément familial.",
+      "class": 6
+    },
+    {
+      "code": "64620",
+      "label": "Congés payés.",
+      "class": 6
+    },
+    {
+      "code": "64622",
+      "label": "Indemnités de préavis et de licenciement (gratification de fin de service).",
+      "class": 6
+    },
+    {
+      "code": "64624",
+      "label": "Supplément familial.",
+      "class": 6
+    },
+    {
+      "code": "64640",
+      "label": "Congés payés.",
+      "class": 6
+    },
+    {
+      "code": "64642",
+      "label": "Indemnités de préavis et de licenciement (gratification de fin de service).",
+      "class": 6
+    },
+    {
+      "code": "64644",
+      "label": "Supplément familial.",
+      "class": 6
+    },
+    {
+      "code": "64650",
+      "label": "Congés payés.",
+      "class": 6
+    },
+    {
+      "code": "64652",
+      "label": "Indemnités de préavis et de licenciement.",
+      "class": 6
+    },
+    {
+      "code": "64654",
+      "label": "Supplément familial.",
+      "class": 6
+    },
+    {
+      "code": "65116",
+      "label": "Des emprunts et dettes assimilées.",
+      "class": 6
+    },
+    {
+      "code": "65117",
+      "label": "Des dettes rattachées à des participations.",
+      "class": 6
+    },
+    {
+      "code": "68111",
+      "label": "Immobilisations incorporelles.",
+      "class": 6
+    },
+    {
+      "code": "68112",
+      "label": "Immobilisations corporelles.",
+      "class": 6
+    },
+    {
+      "code": "68161",
+      "label": "Immobilisations incorporelles.",
+      "class": 6
+    },
+    {
+      "code": "68162",
+      "label": "Immobilisations corporelles.",
+      "class": 6
+    },
+    {
+      "code": "68173",
+      "label": "Stocks et en-cours.",
+      "class": 6
+    },
+    {
+      "code": "68174",
+      "label": "Créances.",
+      "class": 6
+    },
+    {
+      "code": "68662",
+      "label": "Immobilisations financières.",
+      "class": 6
+    },
+    {
+      "code": "68665",
+      "label": "Placements et prêts courants.",
+      "class": 6
+    },
+    {
+      "code": "78111",
+      "label": "Immobilisations incorporelles.",
+      "class": 7
+    },
+    {
+      "code": "78112",
+      "label": "Immobilisations corporelles.",
+      "class": 7
+    },
+    {
+      "code": "78161",
+      "label": "Immobilisations incorporelles.",
+      "class": 7
+    },
+    {
+      "code": "78162",
+      "label": "Immobilisations corporelles.",
+      "class": 7
+    },
+    {
+      "code": "78173",
+      "label": "Stocks et en-cours.",
+      "class": 7
+    },
+    {
+      "code": "78174",
+      "label": "Créances.",
+      "class": 7
+    },
+    {
+      "code": "436711",
+      "label": "TVA collectée sur les débits.",
+      "class": 4
+    },
+    {
+      "code": "436712",
+      "label": "TVA collectée sur les encaissements.",
+      "class": 4
+    }
+  ]
+}
