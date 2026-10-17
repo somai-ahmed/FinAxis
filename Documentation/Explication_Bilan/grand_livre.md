@@ -132,7 +132,7 @@ solde initial (avant 21/01) = 100 000 − 30 000 = 70 000
 
 ## 5. Exemple complet
 
-Données : les six écritures de [02_bilan.fr.md](02_bilan.fr.md). Grand livre du compte **41 Clients** (compte débiteur), 01/01 → 31/01 :
+Données : les six écritures de [bilan](bilan.md). Grand livre du compte **41 Clients** (compte débiteur), 01/01 → 31/01 :
 
 | Date | Réf | Libellé | Débit | Crédit | Solde cumulé |
 |---|---|---|---|---|---|
